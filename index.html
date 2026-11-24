@@ -3,508 +3,745 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>❄️ 北海道冬日親子冒險 · 隨行手冊 v6 ⛄</title>
+  <title>❄️ 北海道冬日親子冒險 · 隨行手冊 V1 (最新行程整合＋20間精選美食典藏版) ⛄</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap');
 
     :root {
-      --primary: #5b50e6;
+      --primary: #4f46e5;
       --primary-dark: #3730a3;
-      --primary-soft: #eef2ff;
-      --pink: #ec4899;
-      --pink-soft: #fdf2f8;
-      --sky: #0ea5e9;
-      --sky-soft: #f0f9ff;
-      --amber: #d97706;
-      --amber-soft: #fffbeb;
-      --mint: #059669;
-      --mint-soft: #ecfdf5;
-      --rose: #e11d48;
-      --rose-soft: #fff1f2;
+      --primary-soft: #e0e7ff;
+      --accent-pink: #ec4899;
+      --accent-pink-soft: #fdf2f8;
+      --accent-blue: #0ea5e9;
+      --accent-blue-soft: #f0f9ff;
+      --accent-yellow: #f59e0b;
+      --accent-yellow-soft: #fefce8;
+      --accent-mint: #10b981;
+      --accent-mint-soft: #ecfdf5;
+      --accent-purple: #8b5cf6;
+      --accent-purple-soft: #f5f3ff;
       --bg: #f8fafc;
-      --card: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.96);
       --text: #1e293b;
-      --muted: #64748b;
-      --border: #e2e8f0;
-      --radius-xl: 26px;
-      --radius-lg: 18px;
-      --radius-md: 14px;
-      --pill: 9999px;
-      --shadow: 0 10px 28px rgba(99, 102, 241, 0.08);
+      --text-muted: #64748b;
+      --border: #f1f5f9;
+      --border-card: #e2e8f0;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-pill: 9999px;
+      --shadow-sm: 0 4px 12px rgba(148, 163, 184, 0.08);
+      --shadow-card: 0 10px 28px rgba(99, 102, 241, 0.09);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
     body {
       font-family: 'Zen Maru Gothic', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
-      background: radial-gradient(circle at top left, #e0f2fe 0%, transparent 45%),
-                  radial-gradient(circle at top right, #fce7f3 0%, transparent 45%),
-                  #f8fafc;
+      background: linear-gradient(180deg, #e0f2fe 0%, #fce7f3 38%, #f8fafc 100%);
       color: var(--text);
       line-height: 1.65;
-      padding-bottom: 84px;
+      padding-bottom: 76px;
       min-height: 100vh;
+      position: relative;
       overflow-x: hidden;
     }
 
-    /* 飄雪層 */
-    .snow-layer {
-      position: fixed; inset: 0;
-      pointer-events: none; z-index: 1; overflow: hidden;
-      transition: opacity 0.3s ease;
+    /* 飄雪背景裝飾 */
+    .snow-container {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
     }
-    .snow-layer.paused { opacity: 0; }
-    .snow-layer.paused .flake { animation-play-state: paused; }
-    .flake {
-      position: absolute; top: -24px;
-      opacity: 0.55; user-select: none;
-      animation: snowfall linear infinite;
+    .snowflake {
+      position: absolute;
+      top: -24px;
+      color: #93c5fd;
+      opacity: 0.65;
+      font-size: 14px;
+      user-select: none;
+      animation: fall linear infinite;
     }
-    @keyframes snowfall {
-      0% { transform: translateY(-20px) translateX(0) rotate(0deg); opacity: 0; }
-      15% { opacity: 0.65; }
-      85% { opacity: 0.65; }
-      100% { transform: translateY(106vh) translateX(24px) rotate(360deg); opacity: 0; }
+    @keyframes fall {
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+      15% { opacity: 0.75; }
+      90% { opacity: 0.75; }
+      100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
     }
-    .f1 { left: 6%; animation-duration: 10s; font-size: 13px; }
-    .f2 { left: 22%; animation-duration: 13s; animation-delay: 2s; font-size: 16px; }
-    .f3 { left: 45%; animation-duration: 11s; animation-delay: 1s; font-size: 14px; }
-    .f4 { left: 68%; animation-duration: 15s; animation-delay: 3.5s; font-size: 17px; }
-    .f5 { left: 88%; animation-duration: 9.5s; animation-delay: 1.5s; font-size: 13px; }
+    .flake-1 { left: 7%; animation-duration: 9.5s; animation-delay: 0s; font-size: 13px; }
+    .flake-2 { left: 26%; animation-duration: 13s; animation-delay: 2s; font-size: 16px; opacity: 0.45; }
+    .flake-3 { left: 50%; animation-duration: 10.5s; animation-delay: 1s; font-size: 14px; }
+    .flake-4 { left: 74%; animation-duration: 14.5s; animation-delay: 3s; font-size: 18px; opacity: 0.4; }
+    .flake-5 { left: 91%; animation-duration: 8.5s; animation-delay: 1.5s; font-size: 13px; }
 
-    /* Header */
+    /* 頂部漸層視覺 */
     header {
-      position: relative; z-index: 2;
-      background: linear-gradient(135deg, #6366f1 0%, #a855f7 52%, #ec4899 100%);
+      position: relative;
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 48%, #ec4899 100%);
       color: #fff;
-      padding: 28px 18px 26px;
+      padding: 34px 20px 28px;
       text-align: center;
       border-radius: 0 0 34px 34px;
-      box-shadow: 0 12px 32px rgba(168, 85, 247, 0.24);
-    }
-    .header-top-bar {
-      max-width: 660px; margin: 0 auto 8px;
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 11px; font-weight: 700;
-    }
-    .countdown-chip {
-      background: rgba(255,255,255,0.22);
-      backdrop-filter: blur(6px);
-      padding: 4px 12px; border-radius: var(--pill);
-      border: 1px solid rgba(255,255,255,0.32);
-    }
-    .snow-toggle {
-      background: rgba(255,255,255,0.22);
-      color: #fff; border: 1px solid rgba(255,255,255,0.35);
-      padding: 4px 11px; border-radius: var(--pill);
-      font-family: inherit; font-size: 11px; font-weight: 700;
-      cursor: pointer;
+      box-shadow: 0 12px 32px rgba(168, 85, 247, 0.28);
+      z-index: 2;
     }
     .mascot-row {
-      font-size: 32px; display: inline-flex; gap: 12px; margin-bottom: 4px;
-      animation: floaty 2.6s ease-in-out infinite;
+      font-size: 32px;
+      margin-bottom: 6px;
+      display: inline-flex;
+      gap: 14px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.12));
+      animation: bounce 2.4s infinite ease-in-out;
     }
-    @keyframes floaty {
+    @keyframes bounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-6px); }
     }
+    header .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(255,255,255,0.26);
+      backdrop-filter: blur(6px);
+      padding: 4px 14px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 8px;
+      letter-spacing: 1.2px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
     header h1 {
-      font-size: 25px; font-weight: 900; letter-spacing: 0.6px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.12);
-      margin-bottom: 4px;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.12);
     }
     header p {
-      font-size: 12.5px; opacity: 0.95; max-width: 460px;
-      margin: 0 auto 12px; font-weight: 500;
+      font-size: 13px;
+      opacity: 0.96;
+      max-width: 480px;
+      margin: 0 auto 14px;
+      font-weight: 500;
     }
-    .meta-pills { display: flex; justify-content: center; gap: 7px; flex-wrap: wrap; }
+    .meta-pills {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
     .meta-pills span {
       background: rgba(255,255,255,0.22);
-      font-size: 11px; font-weight: 700;
-      padding: 4px 11px; border-radius: var(--pill);
-      border: 1px solid rgba(255,255,255,0.28);
+      backdrop-filter: blur(4px);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,255,255,0.32);
     }
 
-    /* Sticky Top Nav */
+    /* 黏性果凍分頁列 */
     nav.nav-tabs {
-      position: sticky; top: 0; z-index: 90;
-      display: flex; gap: 6px; padding: 8px 10px;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
-      overflow-x: auto; scrollbar-width: none;
+      display: flex;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      box-shadow: 0 4px 18px rgba(148, 163, 184, 0.14);
+      border-bottom: 1px solid #e2e8f0;
+      padding: 7px 8px;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
     nav.nav-tabs::-webkit-scrollbar { display: none; }
     .nav-tab-btn {
-      flex: 0 0 auto;
-      padding: 8px 12px; border-radius: var(--pill);
+      flex: 1;
+      min-width: 76px;
+      padding: 8px 11px;
+      text-align: center;
+      background: #f8fafc;
       border: 1.5px solid transparent;
-      background: #f8fafc; color: var(--muted);
-      font-family: inherit; font-size: 12.5px; font-weight: 700;
-      cursor: pointer; white-space: nowrap;
-      transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border-radius: var(--radius-pill);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      white-space: nowrap;
     }
     .nav-tab-btn.active {
-      background: linear-gradient(135deg, #eef2ff 0%, #fdf2f8 100%);
-      color: var(--primary-dark);
+      background: linear-gradient(135deg, #e0e7ff 0%, #fce7f3 100%);
+      color: #4338ca;
       border-color: #c7d2fe;
-      transform: scale(1.03);
-      box-shadow: 0 4px 10px rgba(99, 102, 241, 0.14);
+      transform: scale(1.04);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.16);
     }
 
-    /* Main Layout */
     main {
-      max-width: 680px; margin: 0 auto;
-      padding: 16px 14px; position: relative; z-index: 2;
-    }
-    .tab-pane { display: none; }
-    .tab-pane.active { display: block; animation: fadePop 0.25s ease-out; }
-    @keyframes fadePop {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 18px 16px;
+      position: relative;
+      z-index: 2;
     }
 
-    /* Card */
+    /* 卡片容器 */
     .card {
-      background: var(--card);
-      border-radius: var(--radius-xl);
-      padding: 18px 16px;
-      margin-bottom: 16px;
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius-lg);
+      padding: 20px 18px;
+      margin-bottom: 18px;
       border: 1.5px solid #edf2f7;
-      box-shadow: var(--shadow);
-      position: relative; overflow: hidden;
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
     }
     .card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
       background: linear-gradient(90deg, #60a5fa, #c084fc, #f472b6);
+      opacity: 0.85;
     }
+
     .card-title {
-      font-size: 16px; font-weight: 900; color: #1e1b4b;
-      margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+      font-size: 16px;
+      font-weight: 900;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: #312e81;
     }
-    .icon-bubble {
-      width: 32px; height: 32px; border-radius: 50%;
+    .card-title .icon-bubble {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
       background: var(--primary-soft);
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 16px; flex-shrink: 0;
+      font-size: 17px;
+      flex-shrink: 0;
     }
 
-    /* Alert Boxes */
-    .alert {
-      padding: 11px 14px; border-radius: var(--radius-md);
-      font-size: 12.8px; line-height: 1.6; margin-bottom: 12px;
-      border: 1.5px dashed;
+    /* 提示氣泡盒 */
+    .alert-box {
+      background: #fffbeb;
+      border: 1.5px dashed #fcd34d;
+      color: #92400e;
+      padding: 12px 15px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      margin-bottom: 14px;
+      line-height: 1.65;
     }
-    .alert-info { background: var(--sky-soft); border-color: #7dd3fc; color: #0369a1; }
-    .alert-warn { background: var(--amber-soft); border-color: #fcd34d; color: #92400e; }
-    .alert-danger { background: var(--rose-soft); border-color: #fda4af; color: #9f1239; }
-    .alert-mint { background: var(--mint-soft); border-color: #6ee7b7; color: #065f46; }
-
-    /* Pills & Badges */
-    .badge {
-      display: inline-block; font-size: 11px; font-weight: 800;
-      padding: 3px 10px; border-radius: var(--pill); white-space: nowrap;
+    .alert-box.danger {
+      background: #fff1f2;
+      border-color: #fda4af;
+      color: #9f1239;
     }
-    .b-pink { background: var(--pink-soft); color: #db2777; border: 1px solid #fbcfe8; }
-    .b-sky { background: var(--sky-soft); color: #0284c7; border: 1px solid #bae6fd; }
-    .b-mint { background: var(--mint-soft); color: #059669; border: 1px solid #a7f3d0; }
-    .b-amber { background: var(--amber-soft); color: #b45309; border: 1px solid #fde68a; }
-    .b-indigo { background: var(--primary-soft); color: var(--primary-dark); border: 1px solid #c7d2fe; }
+    .alert-box.info {
+      background: #f0f9ff;
+      border-color: #bae6fd;
+      color: #0369a1;
+    }
+    .alert-box.mint {
+      background: #ecfdf5;
+      border-color: #6ee7b7;
+      color: #065f46;
+    }
+    .alert-box.purple {
+      background: #f5f3ff;
+      border-color: #ddd6fe;
+      color: #5b21b6;
+    }
 
-    /* Day Selector */
-    .day-strip {
-      display: flex; gap: 7px; overflow-x: auto; padding: 2px 2px 6px;
+    /* 日程膠囊切換 */
+    .day-selector-wrap {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 2px 6px;
       scrollbar-width: none;
     }
-    .day-strip::-webkit-scrollbar { display: none; }
+    .day-selector-wrap::-webkit-scrollbar { display: none; }
     .day-btn {
-      flex: 0 0 auto; padding: 8px 13px; border-radius: var(--pill);
-      border: 1.5px solid var(--border); background: #fff; color: var(--muted);
-      font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer;
+      flex: 0 0 auto;
+      padding: 8px 14px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid #e2e8f0;
+      background: #fff;
+      color: #64748b;
+      cursor: pointer;
       transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .day-btn.active {
-      background: linear-gradient(135deg, #4f46e5, #7c3aed);
-      color: #fff; border-color: transparent;
-      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.26);
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: #fff;
+      border-color: transparent;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
     }
-    .day-content { display: none; }
-    .day-content.active { display: block; animation: fadePop 0.25s ease-out; }
 
-    /* Route Flow */
+    /* 時間軸 */
+    .timeline {
+      position: relative;
+      padding-left: 24px;
+      border-left: 3px dashed #cbd5e1;
+      margin-left: 12px;
+      margin-top: 14px;
+    }
+    .timeline-item { position: relative; margin-bottom: 22px; }
+    .timeline-item:last-child { margin-bottom: 4px; }
+    .timeline-item::before {
+      content: '🐾';
+      position: absolute;
+      left: -35px;
+      top: 0px;
+      font-size: 15px;
+      background: #fff;
+      border-radius: 50%;
+      padding: 2px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+    .timeline-time {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      color: #4f46e5;
+      background: var(--primary-soft);
+      padding: 2px 10px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 4px;
+    }
+    .timeline-title { font-size: 15px; font-weight: 800; margin: 3px 0 5px; color: #1e1b4b; }
+    .timeline-desc { font-size: 13px; color: #475569; line-height: 1.65; }
+
+    /* 黃金動線流程膠囊 */
     .route-flow {
-      display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
-      background: #f8fafc; border: 1.5px solid var(--border);
-      padding: 11px; border-radius: var(--radius-md);
-      margin-bottom: 12px; font-size: 11.5px; font-weight: 800; color: #312e81;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      margin-bottom: 14px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #312e81;
     }
     .route-step {
-      background: #fff; border: 1px solid #c7d2fe;
-      padding: 3px 9px; border-radius: var(--pill);
+      background: #fff;
+      border: 1px solid #c7d2fe;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
     }
-    .route-arrow { color: var(--pink); font-weight: 900; }
+    .route-arrow { color: #ec4899; font-weight: 900; }
 
-    /* Timeline */
-    .timeline {
-      position: relative; padding-left: 22px; margin-left: 10px; margin-top: 12px;
-      border-left: 3px dashed #cbd5e1;
+    /* 美食篩選列 */
+    .filter-bar {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      scrollbar-width: none;
     }
-    .tl-item { position: relative; margin-bottom: 20px; }
-    .tl-item:last-child { margin-bottom: 4px; }
-    .tl-item::before {
-      content: '🐾'; position: absolute; left: -33px; top: 0;
-      font-size: 14px; background: #fff; border-radius: 50%; padding: 2px;
+    .filter-bar::-webkit-scrollbar { display: none; }
+    .filter-pill {
+      flex: 0 0 auto;
+      padding: 6px 13px;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid #cbd5e1;
+      background: #fff;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.2s;
     }
-    .tl-time {
-      display: inline-block; font-size: 11px; font-weight: 800;
-      color: var(--primary); background: var(--primary-soft);
-      padding: 2px 10px; border-radius: var(--pill); margin-bottom: 4px;
-    }
-    .tl-title { font-size: 15px; font-weight: 800; color: #1e1b4b; margin-bottom: 4px; }
-    .tl-desc { font-size: 13px; color: #475569; }
-
-    .choice-stack { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
-    .choice-box {
-      background: #f8fafc; border: 1.5px solid #e2e8f0;
-      border-radius: 12px; padding: 10px 12px; font-size: 12.5px; color: #334155;
-    }
-    .choice-box-head {
-      display: flex; justify-content: space-between; align-items: center; gap: 6px;
-      margin-bottom: 4px; flex-wrap: wrap;
-    }
-    .mini-map-btn {
-      display: inline-flex; align-items: center; gap: 3px;
-      font-size: 11px; font-weight: 800; color: var(--primary);
-      background: var(--primary-soft); padding: 3px 9px;
-      border-radius: var(--pill); text-decoration: none;
+    .filter-pill.active {
+      background: #4f46e5;
+      color: #fff;
+      border-color: #4f46e5;
+      box-shadow: 0 3px 8px rgba(79, 70, 229, 0.25);
     }
 
-    /* Filter Chips */
-    .filter-row {
-      display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;
+    /* 餐廳與商店卡片 */
+    .food-list { display: flex; flex-direction: column; gap: 12px; }
+    .food-card {
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }
-    .filter-chip {
-      padding: 6px 12px; border-radius: var(--pill);
-      border: 1.5px solid var(--border); background: #fff; color: var(--muted);
-      font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer;
+    .food-card.otaru-highlight {
+      background: #f0f9ff;
+      border-color: #bae6fd;
     }
-    .filter-chip.active {
-      background: var(--primary); color: #fff; border-color: var(--primary);
+    .food-card.souvenir-highlight {
+      background: #fdf2f8;
+      border-color: #fbcfe8;
     }
+    .food-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .food-name {
+      font-size: 15px;
+      font-weight: 900;
+      color: #1e1b4b;
+    }
+    .food-meta {
+      font-size: 12.5px;
+      color: #475569;
+      line-height: 1.6;
+    }
+    .food-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+    .food-map-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #4f46e5;
+      background: #e0e7ff;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+    }
+    .food-map-link.pink {
+      color: #be185d;
+      background: #fce7f3;
+    }
+    .food-map-link:active { opacity: 0.8; }
 
-    /* Food / Shop Cards */
-    .item-grid { display: flex; flex-direction: column; gap: 11px; }
-    .item-card {
-      background: #f8fafc; border: 1.5px solid var(--border);
-      border-radius: var(--radius-lg); padding: 13px 14px;
-      display: flex; flex-direction: column; gap: 6px;
+    /* 行程內嵌選項卡片 */
+    .inline-choices {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
     }
-    .item-card.otaru { background: #f0f9ff; border-color: #bae6fd; }
-    .item-card.special { background: #fdf2f8; border-color: #fbcfe8; }
-    .item-head {
-      display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;
+    .inline-choice-item {
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: #334155;
     }
-    .item-name { font-size: 14.5px; font-weight: 900; color: #1e1b4b; }
-    .item-meta { font-size: 12.2px; color: #475569; line-height: 1.55; }
-    .item-foot { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 2px; }
+    .inline-choice-item strong { color: #1e1b4b; }
 
-    /* Souvenir Tracker */
-    .souvenir-row {
-      display: flex; justify-content: space-between; align-items: center; gap: 10px;
-      padding: 11px 12px; background: #f8fafc; border: 1.5px solid var(--border);
-      border-radius: var(--radius-md); margin-bottom: 8px;
+    /* 住宿卡片 */
+    .hotel-list { display: flex; flex-direction: column; gap: 10px; }
+    .hotel-item {
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
-    .souvenir-row.checked { background: var(--mint-soft); border-color: #a7f3d0; }
-    .souvenir-left { display: flex; align-items: flex-start; gap: 10px; flex: 1; cursor: pointer; }
-    .souvenir-title { font-size: 13.5px; font-weight: 800; color: #1e1b4b; }
-    .souvenir-sub { font-size: 11.5px; color: var(--muted); }
-    .souvenir-row.checked .souvenir-title { text-decoration: line-through; color: #64748b; }
-    .qty-ctrl {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: #fff; border: 1px solid #cbd5e1; border-radius: var(--pill);
-      padding: 3px 6px; flex-shrink: 0;
+    .hotel-item.highlight {
+      background: #fdf2f8;
+      border-color: #fbcfe8;
     }
-    .qty-btn {
-      width: 24px; height: 24px; border-radius: 50%; border: none;
-      background: var(--primary-soft); color: var(--primary-dark);
-      font-weight: 900; font-size: 14px; cursor: pointer;
-    }
-    .qty-num { min-width: 18px; text-align: center; font-size: 13px; font-weight: 900; }
+    .hotel-nights { font-size: 11px; font-weight: 800; color: #4338ca; }
+    .hotel-item.highlight .hotel-nights { color: #db2777; }
+    .hotel-name { font-size: 15px; font-weight: 900; color: #1e1b4b; }
+    .hotel-note { font-size: 12.5px; color: #64748b; }
 
-    /* Boarding Pass & Hotels */
-    .flight-box {
-      background: #f8fafc; border: 1.5px solid var(--border);
-      border-radius: var(--radius-lg); padding: 14px; margin-bottom: 10px;
-    }
-    .flight-route {
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 17px; font-weight: 900; color: #1e1b4b; margin-top: 6px;
-    }
-    .transit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .transit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     @media (max-width: 500px) { .transit-grid { grid-template-columns: 1fr; } }
-    .transit-card {
-      background: #f8fafc; border: 1.5px solid var(--border);
-      border-radius: var(--radius-md); padding: 12px;
+    .transit-item {
+      background: #f8fafc;
+      border: 1.5px solid #edf2f7;
+      padding: 14px;
+      border-radius: var(--radius-md);
     }
-    .transit-card h4 { font-size: 13.5px; font-weight: 800; color: #312e81; margin-bottom: 4px; }
-    .transit-card p { font-size: 12px; color: var(--muted); }
+    .transit-item h4 { font-size: 14px; font-weight: 800; margin-bottom: 5px; color: #312e81; display: flex; align-items: center; gap: 6px; }
+    .transit-item p { font-size: 12px; color: #64748b; line-height: 1.55; }
 
-    /* Checklist & Progress */
-    .progress-wrap { margin-bottom: 14px; }
-    .progress-top {
-      display: flex; justify-content: space-between; font-size: 12px;
-      font-weight: 800; color: var(--primary-dark); margin-bottom: 5px;
+    /* 裝備與伴手禮雙清單 */
+    .checklist-group { margin-bottom: 18px; }
+    .checklist-group h4 {
+      font-size: 14px;
+      font-weight: 900;
+      color: #4338ca;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .progress-bar {
-      height: 10px; background: #e2e8f0; border-radius: var(--pill); overflow: hidden;
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: #f8fafc;
+      border-radius: var(--radius-md);
+      margin-bottom: 8px;
+      cursor: pointer;
+      user-select: none;
+      border: 1.5px solid #e2e8f0;
+      transition: all 0.2s;
+      font-size: 13px;
     }
-    .progress-fill {
-      height: 100%; width: 0%;
-      background: linear-gradient(90deg, #60a5fa, #a855f7, #ec4899);
-      border-radius: var(--pill); transition: width 0.3s ease;
+    .checklist-item input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border: 2px solid #cbd5e1;
+      border-radius: 8px;
+      background: #fff;
+      display: inline-grid;
+      place-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
     }
-    .check-row {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 12px; background: #f8fafc; border: 1.5px solid var(--border);
-      border-radius: var(--radius-md); margin-bottom: 8px; cursor: pointer;
+    .checklist-item input[type="checkbox"]::before {
+      content: "🎀";
+      font-size: 13px;
+      transform: scale(0);
+      transition: 0.15s transform ease-in-out;
     }
-    .check-row.done { background: var(--pink-soft); border-color: #fbcfe8; }
-    .check-row.done span { text-decoration: line-through; color: #94a3b8; }
-    .cute-cb {
-      appearance: none; -webkit-appearance: none;
-      width: 22px; height: 22px; border: 2px solid #cbd5e1; border-radius: 7px;
-      background: #fff; display: inline-grid; place-content: center; flex-shrink: 0;
+    .checklist-item input[type="checkbox"]:checked {
+      background: #fbcfe8;
+      border-color: #f472b6;
     }
-    .cute-cb::before { content: '🎀'; font-size: 12px; transform: scale(0); transition: 0.15s; }
-    .cute-cb:checked { background: #fbcfe8; border-color: #f472b6; }
-    .cute-cb:checked::before { transform: scale(1); }
+    .checklist-item input[type="checkbox"]:checked::before { transform: scale(1); }
+    .checklist-item.done { background: #fdf2f8; border-color: #fce7f3; }
+    .checklist-item.done span { text-decoration: line-through; color: #94a3b8; }
 
-    .add-item-bar { display: flex; gap: 8px; margin-top: 10px; }
-    .text-input {
-      flex: 1; padding: 10px 12px; border-radius: var(--radius-md);
-      border: 1.5px solid #cbd5e1; font-family: inherit; font-size: 13px;
-      outline: none;
-    }
-    .text-input:focus { border-color: var(--primary); }
-
-    /* Buttons & Selects */
+    /* 泡泡按鈕與導航表單 */
     .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 7px;
-      width: 100%; padding: 12px 18px; border-radius: var(--pill);
-      border: none; cursor: pointer; text-decoration: none;
-      font-family: inherit; font-size: 14px; font-weight: 800; color: #fff;
-      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      width: 100%;
       box-shadow: 0 4px 14px rgba(99, 102, 241, 0.25);
+      transition: all 0.2s;
     }
+    .btn:active { transform: scale(0.97); }
     .btn-pink {
-      background: linear-gradient(135deg, #ec4899, #f43f5e);
+      background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
       box-shadow: 0 4px 14px rgba(236, 72, 153, 0.25);
     }
-    .btn-sm { width: auto; padding: 9px 15px; font-size: 12.5px; }
+
     .nav-select {
-      width: 100%; padding: 11px 13px; border-radius: var(--radius-md);
-      border: 1.5px solid #c7d2fe; background: #f8fafc;
-      font-family: inherit; font-size: 13.5px; font-weight: 700; color: #1e1b4b;
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid #c7d2fe;
+      background: #f8fafc;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      color: #1e1b4b;
       margin-bottom: 10px;
+      outline: none;
     }
     .mode-pills { display: flex; gap: 8px; margin-bottom: 12px; }
     .mode-btn {
-      flex: 1; padding: 8px 6px; border-radius: var(--pill);
-      border: 1.5px solid var(--border); background: #fff;
-      font-family: inherit; font-size: 12px; font-weight: 700; color: var(--muted);
+      flex: 1;
+      padding: 8px 6px;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid #e2e8f0;
+      background: #fff;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      color: #64748b;
       cursor: pointer;
+      transition: all 0.2s;
     }
-    .mode-btn.active { background: var(--primary-soft); border-color: #818cf8; color: var(--primary-dark); }
+    .mode-btn.active {
+      background: #e0e7ff;
+      border-color: #818cf8;
+      color: #3730a3;
+    }
 
-    /* Currency Box */
-    .fx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
-    .fx-result {
-      background: var(--sky-soft); border: 1.5px solid #bae6fd;
-      border-radius: var(--radius-md); padding: 10px 12px; text-align: center;
+    .day-content { display: none; }
+    .day-content.active { display: block; animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    @keyframes popIn {
+      from { opacity: 0; transform: translateY(6px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
-    .fx-result .val { font-size: 19px; font-weight: 900; color: #0369a1; }
-    .fx-result .lbl { font-size: 11px; font-weight: 700; color: #64748b; }
+
+    .badge-pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+    }
+    .badge-pink { background: #fdf2f8; color: #db2777; border: 1px solid #fbcfe8; }
+    .badge-blue { background: #f0f9ff; color: #0284c7; border: 1px solid #bae6fd; }
+    .badge-mint { background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
+    .badge-yellow { background: #fefce8; color: #b45309; border: 1px solid #fde68a; }
+    .badge-purple { background: #f5f3ff; color: #6d28d9; border: 1px solid #ddd6fe; }
   </style>
-</head>
+<script type="text/javascript" nonce="01c2afda60f848178e890d4ae34" src="//local.adguard.org?ts=1795535483841&amp;type=content-script&amp;dmn=contribution.usercontent.google.com&amp;url=https%3A%2F%2Fcontribution.usercontent.google.com%2Fdownload%3Fc%3DCgxiYXJkX3N0b3JhZ2USUBINcmVzcG9uc2VfZGF0YRo_CjBkNDU3ODhkYzdiNTEyOWM4MDAwNjYxMDgwOWY3YWQ3NjA4ZWI2YWJjZDMyZTkyODcSCxIHEMC3grzAEBgB%26filename%3D%25E5%258C%2597%25E6%25B5%25B7%25E9%2581%2593%25E5%2586%25AC%25E6%2597%25A5%25E8%25A6%25AA%25E5%25AD%2590%25E6%2597%2585%25E8%25A1%258C_%25E5%25AE%258C%25E6%2595%25B4%25E5%2585%25B8%25E8%2597%258F%25E7%2589%2588_V1.html%26opi%3D103135050&amp;app=chrome.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="01c2afda60f848178e890d4ae34" src="//local.adguard.org?ts=1795535483841&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;type=user-script"></script></head>
 <body>
 
-  <div class="snow-layer" id="snowLayer">
-    <div class="flake f1">❄️</div>
-    <div class="flake f2">✨</div>
-    <div class="flake f3">❄️</div>
-    <div class="flake f4">⛄</div>
-    <div class="flake f5">❄️</div>
+  <div class="snow-container">
+    <div class="snowflake flake-1">❄️</div>
+    <div class="snowflake flake-2">✨</div>
+    <div class="snowflake flake-3">❄️</div>
+    <div class="snowflake flake-4">⛄</div>
+    <div class="snowflake flake-5">❄️</div>
   </div>
 
   <header>
-    <div class="header-top-bar">
-      <span class="countdown-chip" id="tripCountdown">❄️ 2026 北海道冬日之旅</span>
-      <button type="button" class="snow-toggle" id="snowToggleBtn" onclick="toggleSnow()">❄️ 飄雪：開</button>
+    <div class="mascot-row">
+      <span>🐧</span><span>⛄</span><span>🎁</span>
     </div>
-    <div class="mascot-row"><span>🐧</span><span>⛄</span><span>♨️</span></div>
+    <br>
+    <div class="badge">HOKKAIDO WINTER TRIP · 2026 · V1</div>
     <h1>北海道冬日親子冒險</h1>
-    <p>雪景、溫泉、運河、美食與同事伴手禮 ❄️ 避開尖峰人潮的隨行手帳</p>
+    <p>最新行程（伊達時代村・第一滝本館・小樽水族館・美唄雪樂園）＋20 間精選美食典藏手冊 ❄️</p>
     <div class="meta-pills">
       <span>📅 2026.12.16 — 12.21</span>
       <span>⏱ 6 天 5 夜</span>
       <span>👨‍👩‍👧‍👦 親子慢步調</span>
-      <span>🌅 16:00 日落提醒</span>
     </div>
   </header>
 
   <nav class="nav-tabs" id="mainTabs">
-    <button type="button" class="nav-tab-btn active" onclick="switchTab('tab-itinerary', this)">🗓️ 每日行程</button>
-    <button type="button" class="nav-tab-btn" onclick="switchTab('tab-food', this)">🍽️ 美食名單</button>
-    <button type="button" class="nav-tab-btn" onclick="switchTab('tab-souvenir', this)">🎁 伴手禮&特色店</button>
-    <button type="button" class="nav-tab-btn" onclick="switchTab('tab-flights', this)">✈️ 航班住宿</button>
-    <button type="button" class="nav-tab-btn" onclick="switchTab('tab-shopping', this)">🛍️ 商圈&玩雪</button>
-    <button type="button" class="nav-tab-btn" onclick="switchTab('tab-checklist', this)">🎒 防寒清單</button>
-    <button type="button" class="nav-tab-btn" onclick="switchTab('tab-gps', this)">🧭 導航&匯率</button>
+    <button class="nav-tab-btn active" onclick="switchTab('tab-itinerary', this)">🗓 每日行程</button>
+    <button class="nav-tab-btn" onclick="switchTab('tab-food', this)">🍽️ 美食名單</button>
+    <button class="nav-tab-btn" onclick="switchTab('tab-shopping', this)">🎁 逛街伴手禮</button>
+    <button class="nav-tab-btn" onclick="switchTab('tab-flights', this)">✈️ 航班住宿</button>
+    <button class="nav-tab-btn" onclick="switchTab('tab-snow', this)">⛄ 玩雪備案</button>
+    <button class="nav-tab-btn" onclick="switchTab('tab-checklist', this)">🎒 裝備採買表</button>
+    <button class="nav-tab-btn" onclick="switchTab('tab-gps', this)">🧭 即時導航</button>
   </nav>
 
   <main>
-    <!-- ================= TAB 1: 每日行程 ================= -->
-    <section id="tab-itinerary" class="tab-pane active">
-      <div class="card" style="padding: 12px 14px;">
-        <div class="day-strip">
-          <button type="button" class="day-btn active" onclick="showDay(1, this)">12/16 三・抵達 ✈️</button>
-          <button type="button" class="day-btn" onclick="showDay(2, this)">12/17 四・登別 ♨️</button>
-          <button type="button" class="day-btn" onclick="showDay(3, this)">12/18 五・札幌 🛍️</button>
-          <button type="button" class="day-btn" onclick="showDay(4, this)">12/19 六・小樽 🛶</button>
-          <button type="button" class="day-btn" onclick="showDay(5, this)">12/20 日・旭川 🐧</button>
-          <button type="button" class="day-btn" onclick="showDay(6, this)">12/21 一・返台 🛫</button>
+    <!-- TAB 1: 每日行程 (依老婆最新PDF行程 + 整合精選美食推薦) -->
+    <div id="tab-itinerary" class="tab-pane active">
+      <div class="card" style="padding: 12px 14px; margin-bottom: 14px;">
+        <div class="day-selector-wrap">
+          <button class="day-btn active" onclick="showDay(1)">12/16 三・抵達 ✈️</button>
+          <button class="day-btn" onclick="showDay(2)">12/17 四・登別 ♨️</button>
+          <button class="day-btn" onclick="showDay(3)">12/18 五・札幌 🛍️</button>
+          <button class="day-btn" onclick="showDay(4)">12/19 六・小樽 🐧</button>
+          <button class="day-btn" onclick="showDay(5)">12/20 日・美唄 ⛄</button>
+          <button class="day-btn" onclick="showDay(6)">12/21 一・回家 🛫</button>
         </div>
       </div>
 
       <!-- DAY 1 -->
       <div id="day-1" class="day-content active">
         <div class="card">
-          <span class="badge b-pink">DAY 1 · 12/16（三）｜宿：札幌白楊飯店（第 1 晚）</span>
-          <h2 style="font-size: 19px; font-weight: 900; margin: 8px 0 10px; color: #1e1b4b;">抵達札幌・輕鬆適應雪國</h2>
-          <div class="alert alert-info">
-            💡 <strong>首日節奏備註：</strong> 第一天以適應零下溫差與雪地步行為主，晚餐直接鎖定「飯店步行 2 分鐘內」餐廳最省力。交通時間為初步估算，出發前請再核對冬季班次與雪況。
+          <span class="badge-pill badge-pink">DAY 1 · 12/16（三）｜宿：札幌白楊飯店</span>
+          <h2 style="font-size: 19px; font-weight: 900; margin: 8px 0 10px; color: #1e1b4b;">抵達札幌・Bic Camera 與 UNIQLO × 白色燈樹聖誕市集</h2>
+          
+          <div class="route-flow">
+            <span class="route-step">🏨 飯店寄放行李</span>
+            <span class="route-arrow">➔</span>
+            <span class="route-step">🍣 14:45 離峰吃大餐</span>
+            <span class="route-arrow">➔</span>
+            <span class="route-step">🛍️ 東急 Bic Camera+UNIQLO</span>
+            <span class="route-arrow">➔</span>
+            <span class="route-step">🎄 白色燈樹＆聖誕市集</span>
           </div>
+
+          <div class="alert-box info">
+            💡 <strong>當日順序與體力備註：</strong><br>
+            順序為：<strong>吃飯 ➔ Bic Camera＋UNIQLO（同棟） ➔ 燈飾 ➔ 聖誕市集</strong>。東急百貨約 20:00 打烊所以先逛；燈飾與市集晚上才熱鬧。孩子早起搭 07:30 飛機容易累，若太晚就先取消聖誕市集直接搭地鐵回札幌站。<strong>寶可夢中心、森林家族改到 12/18。</strong>
+          </div>
+
           <div class="timeline">
-            <div class="tl-item">
-              <div class="tl-time">07:30 - 12:00</div>
-              <div class="tl-title">✈️ 桃園 (TPE) ➔ 新千歲 (CTS)</div>
-              <div class="tl-desc">搭乘泰亞航 FD242 經濟艙直飛，抵達後領取行李、穿妥保暖外套並通關。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">07:30 - 12:00</div>
+              <div class="timeline-title">✈️ 桃園機場起飛 ➔ 抵達新千歲機場</div>
+              <div class="timeline-desc">搭乘 Thai AirAsia FD242（TPE ➔ CTS），入境、領行李預留約 1–1.5 小時。</div>
             </div>
-            <div class="tl-item">
-              <div class="tl-time">13:00 - 14:00</div>
-              <div class="tl-title">🚆 JR 快速 Airport 直達札幌車站</div>
-              <div class="tl-desc">車程約 37–45 分鐘（白天約每 12 分鐘一班），另預留候車時間。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 13:30</div>
+              <div class="timeline-title">🚆 搭 JR 快速 Airport 前往札幌車站</div>
+              <div class="timeline-desc">車程約 37–45 分鐘，另預留候車時間。</div>
             </div>
-            <div class="tl-item">
-              <div class="tl-time">14:30 - 15:30</div>
-              <div class="tl-title">🏨 札幌白楊飯店 (MYStays Sapporo Aspen) 入住</div>
-              <div class="tl-desc">札幌站北口步行約 5 分鐘，卸下大件行李；若鞋底較滑可在站前超商或鞋店先買防滑鞋套。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 14:30</div>
+              <div class="timeline-title">🏨 札幌白楊飯店 (HOTEL MYSTAYS Sapporo Aspen) 寄放行李</div>
+              <div class="timeline-desc">已與飯店確認可寄放行李；入住時間為 15:00 起。</div>
             </div>
-            <div class="tl-item">
-              <div class="tl-time">17:00 - 19:30</div>
-              <div class="tl-title">🍣 週三晚餐・飯店步行圈精選</div>
-              <div class="tl-desc">推薦：<strong>めしと純米 北口店</strong>（步行 1 分・釜飯燒肉）、<strong>四季花丸 北口店</strong>（步行 2 分・壽司＆爐端燒）、<strong>北虎 北口店</strong>（步行 2 分），或地下連通直達的<strong>根室花丸 miredo 店</strong>。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 14:45 - 16:45</div>
+              <div class="timeline-title">🍽️ 放完行李先吃一頓長長的離峰大餐（約 2 小時）</div>
+              <div class="timeline-desc">建議選札幌站或東急百貨周邊（剛好避開午晚餐尖峰，下一站直接逛東急百貨）：</div>
+              <div class="inline-choices">
+                <div class="inline-choice-item">
+                  <strong>① 根室花丸（JR Tower Stellar Place 6F / 大同生命 miredo B1）</strong>｜每日 11:00–22:00（全日無午休）<br>
+                  14:45 屬於午後離峰時段，抽號碼牌等候時間大幅縮短，就在札幌站與東急百貨旁超順路！
+                </div>
+                <div class="inline-choice-item">
+                  <strong>② 札幌螃蟹本家 札幌站前本店</strong>｜每日 11:30–22:00（全日無午休）<br>
+                  距離東急百貨步行僅 2 分鐘！設有舒適和式包廂與兒童友善餐點，全家悠閒吃 2 小時螃蟹大餐最愜意。
+                </div>
+                <div class="inline-choice-item">
+                  <strong>③ 壽司＆爐端燒 四季花丸 北口店</strong>｜飯店步行 2 分鐘（註：14:50 午休、17:00 晚場開門）<br>
+                  若先辦完 15:00 Check-in 進房小憩，亦可 17:00 準時入場或改吃 17:00 開門的 <strong>めしと純米（釜飯燒肉）</strong>。
+                </div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 16:45 - 19:00</div>
+              <div class="timeline-title">🛍️ Bic Camera（東急百貨 5-6F）＋ UNIQLO（同棟 7F）</div>
+              <div class="timeline-desc">同一棟樓超省力！家電、藥妝、玩具在 5–6F，UNIQLO 東急百貨店さっぽろ店在 7F（兩邊皆營業至約 20:00）。從飯店走路約 10 分鐘，或走地下道至東豐線さっぽろ站相連。<strong>記得順便補買孩子的 Heattech 內層！</strong></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 19:00 - 19:45</div>
+              <div class="timeline-title">✨ 大通公園白色燈樹節（西 3–5 丁目）</div>
+              <div class="timeline-desc">從東急百貨步行至大通公園約 0.8 公里（沿途札幌站前通 16:30 起也有燈飾）。燈飾 16:30–22:00 點燈，日落後氣溫驟降請注意保暖。</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 19:45 - 20:30</div>
+              <div class="timeline-title">🎄 慕尼黑聖誕市集（大通公園西 1–2 丁目）</div>
+              <div class="timeline-desc">營業 11:00–21:00（最後點餐 20:45）。逛木屋、吃德國香腸與熱可可暖身，不用另外找晚餐也可以；若孩子累了可直接搭地鐵回札幌站（回飯店若還想吃宵夜，飯店旁有 <strong>めしと純米</strong>、<strong>北虎</strong> 或 <strong>四季花丸北口店</strong>）。</div>
             </div>
           </div>
         </div>
@@ -513,36 +750,46 @@
       <!-- DAY 2 -->
       <div id="day-2" class="day-content">
         <div class="card">
-          <span class="badge b-sky">DAY 2 · 12/17（四）｜宿：登別溫泉飯店（第 2 晚）</span>
-          <h2 style="font-size: 19px; font-weight: 900; margin: 8px 0 10px; color: #1e1b4b;">登別溫泉鄉・地獄谷雪景與名湯</h2>
-          <div class="alert alert-warn">
-            🧳 <strong>親子輕裝撇步：</strong> 早上從札幌白楊飯店退房時，<strong>先將大件行李箱寄放在櫃檯</strong>，全家人只帶 1 晚過夜隨身包出發！抵達登別站後<strong>須再轉乘道南巴士（約 15 分鐘）</strong>至溫泉區。
+          <span class="badge-pill badge-blue">DAY 2 · 12/17（四）｜宿：登別 第一滝本館</span>
+          <h2 style="font-size: 19px; font-weight: 900; margin: 8px 0 10px; color: #1e1b4b;">前往登別・伊達時代村與第一滝本館名湯</h2>
+          
+          <div class="alert-box">
+            🧳 <strong>輕裝移動與當日提醒：</strong><br>
+            • 大行李已與札幌白楊飯店確認可寄放，全家帶一個過夜包移動。<br>
+            • <strong>地獄谷留到明天（12/18）早上再去</strong>，避開傍晚天黑與結冰路面。<br>
+            • 伊達時代村冬季偶有維修休村日，出發前請查官網；冬天路面易結冰請穿防滑鞋。
           </div>
+
           <div class="timeline">
-            <div class="tl-item">
-              <div class="tl-time">08:00 - 09:45</div>
-              <div class="tl-title">☕ 週四早鳥早餐 & 飯店寄放大行李</div>
-              <div class="tl-desc">平日 07:00 開門的 <strong>猿田彦珈琲 D-LIFEPLACE 札幌店</strong>（札幌站地下連通免吹風）享用咖啡與吐司，回飯店寄放行李後輕裝前往車站。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 08:30</div>
+              <div class="timeline-title">🚆 札幌站出發（寄放行李 ➔ 搭 JR 特急至登別站）</div>
+              <div class="timeline-desc">早起可先至 <strong>猿田彦珈琲 D-LIFEPLACE 札幌店</strong>（07:00 營業）買咖啡早餐；將大件行李寄放札幌飯店櫃檯，搭 JR 特急前往登別站（車程約 75–90 分鐘）。</div>
             </div>
-            <div class="tl-item">
-              <div class="tl-time">10:00 - 11:30</div>
-              <div class="tl-title">🚆 札幌 ➔ 登別 (JR 室蘭本線特急)</div>
-              <div class="tl-desc">車程約 75–90 分鐘至登別站，出站轉乘道南巴士進入登別溫泉街。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 10:00 - 10:15</div>
+              <div class="timeline-title">🚌 登別站轉乘道南巴士</div>
+              <div class="timeline-desc">前往「登別伊達時代村」，車程約 6–10 分鐘（巴士時刻與下車站請出發前確認）。</div>
             </div>
-            <div class="tl-item">
-              <div class="tl-time">12:15 - 13:30</div>
-              <div class="tl-title">🍜 溫泉飯店寄包 & 溫泉街午餐</div>
-              <div class="tl-desc">卸下過夜包，在溫泉街享用暖胃溫泉拉麵或烤海鮮定食。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 10:30 - 14:30</div>
+              <div class="timeline-title">🏯 登別伊達時代村（江戶忍者與花魁劇場）</div>
+              <div class="timeline-desc">冬季營業 09:00–16:00（最後入園約 15:00）；忍者武打秀、花魁劇場等表演時刻請當天確認，午餐可在園內江戶風情食堂解決。</div>
             </div>
-            <div class="tl-item">
-              <div class="tl-time">13:30 - 15:30</div>
-              <div class="tl-title">🌋 登別地獄谷雪景 & 大湯沼川天然足湯</div>
-              <div class="tl-desc">欣賞白雪與硫磺白煙交織奇景；冬季木棧道積雪較滑，步幅放小且手勿插口袋。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 14:30 - 15:00</div>
+              <div class="timeline-title">🚕 前往登別溫泉區</div>
+              <div class="timeline-desc">從時代村搭乘道南巴士或計程車前往溫泉街，車程約 10 分鐘。</div>
             </div>
-            <div class="tl-item">
-              <div class="tl-time">16:00 - 21:00</div>
-              <div class="tl-title">♨️ 入住登別溫泉飯店・雪見露天名湯</div>
-              <div class="tl-desc">浸泡硫磺名湯舒緩身心，享用溫泉飯店豐盛會席料理晚餐。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 15:00 後</div>
+              <div class="timeline-title">🏨 第一滝本館 Check-in</div>
+              <div class="timeline-desc">入住時間以訂房確認信為準，抵達後可先寄放隨身包並換上浴衣。</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">傍晚 - 晚上</div>
+              <div class="timeline-title">♨️ 第一滝本館名湯與溫泉晚餐</div>
+              <div class="timeline-desc">享受著名的多種泉質大浴場與雪景露天風呂，享用豐盛溫泉晚餐；地獄谷留待明早天亮後散步前往。</div>
             </div>
           </div>
         </div>
@@ -551,38 +798,53 @@
       <!-- DAY 3 -->
       <div id="day-3" class="day-content">
         <div class="card">
-          <span class="badge b-pink">DAY 3 · 12/18（五）｜宿：札幌白楊飯店（連住 3 晚起）</span>
-          <h2 style="font-size: 19px; font-weight: 900; margin: 8px 0 10px; color: #1e1b4b;">返回札幌・站前 3C 採買與狸小路</h2>
-          <div class="alert alert-danger">
-            ⚠️ <strong>週五商圈兩大紅線提醒：</strong><br>
-            1. 下午札幌站採買的大件電器、玩具與戰利品，<strong>務必先放回飯店再去狸小路</strong>！<br>
-            2. 狸小路 4 丁目 <strong>ABC-MART 約 20:00 打烊</strong>，要買防滑鞋套先衝這間！
+          <span class="badge-pill badge-pink">DAY 3 · 12/18（五）｜宿：札幌白楊飯店（連住 3 晚）</span>
+          <h2 style="font-size: 19px; font-weight: 900; margin: 8px 0 10px; color: #1e1b4b;">晨訪地獄谷 ➔ 返回札幌・寶可夢中心＆狸小路主要購物日</h2>
+          
+          <div class="alert-box danger">
+            ⚠️ <strong>主要購物日重點提醒：</strong><br>
+            • <strong>寶可夢中心與森林家族已從 12/16 移到今天！</strong>（Bic Camera 已排在 12/16）。<br>
+            • 購物清單先列好：寶可夢、森林家族、扭蛋、電器、藥妝、零食。若登別接駁或 JR 延誤，<strong>優先保留寶可夢中心和森林家族</strong>，狸小路可移到之後晚上。<br>
+            • 狸小路 4 丁目 <strong>ABC-MART 約 20:00 打烊</strong>，買防滑鞋套要優先！
           </div>
+
           <div class="timeline">
-            <div class="tl-item">
-              <div class="tl-time">09:00 - 11:30</div>
-              <div class="tl-title">🚆 登別 ➔ 返回札幌・領行李辦理續住</div>
-              <div class="tl-desc">道南巴士接 JR 特急返回札幌，回札幌白楊飯店領回寄放行李並辦理後續 3 晚入住。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">早上</div>
+              <div class="timeline-title">♨️ 第一滝本館早餐與晨間溫泉</div>
+              <div class="timeline-desc">享受溫泉飯店早餐、泡早湯，依旅館退房時間整理過夜包。</div>
             </div>
-            <div class="tl-item">
-              <div class="tl-time">11:30 - 13:30</div>
-              <div class="tl-title">🍣 站前午餐 & 市區公園玩雪空檔</div>
-              <div class="tl-desc">午餐推薦：<strong>根室花丸（JR Tower 店掃 QR 候位／miredo 店）</strong>或 <strong>拉麵 札幌一粒庵</strong>（注意 15:00 午休）；空檔可去中島公園／圓山公園買百元雪橇玩雪。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 09:00 - 10:00</div>
+              <div class="timeline-title">🌋 登別地獄谷（晨間雪景散策）</div>
+              <div class="timeline-desc">從第一滝本館步行即可抵達，白天光線充足看火山地形與硫磺蒸氣最清晰；路面結冰請務必穿防滑鞋。</div>
             </div>
-            <div class="tl-item">
-              <div class="tl-time">13:30 - 16:30</div>
-              <div class="tl-title">🛍️ 札幌站・住宿周邊商圈（主力 3C 與玩具）</div>
-              <div class="tl-desc"><strong>Yodobashi</strong>（電器/3C/玩具/森林家族/扭蛋）➔ <strong>Stellar Place</strong>（扭蛋）➔ <strong>東急 Bic Camera</strong>（免稅家電/藥妝/Switch）➔ <strong>大丸 8F 寶可夢中心</strong>。戰利品先送回飯店，再走地下道往大通站（中途可至 <strong>UCC Café Plaza</strong> 歇腳）。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 10:30</div>
+              <div class="timeline-title">🚆 登別 ➔ 返回札幌（約 12:30 前後抵達）</div>
+              <div class="timeline-desc">搭旅館接駁車（若有且需預約）或道南巴士至登別站，再轉 JR 特急返回札幌。</div>
             </div>
-            <div class="tl-item">
-              <div class="tl-time">17:00 - 18:30</div>
-              <div class="tl-title">🐧 狸小路 3 丁目 moyuk · AOAO 水族館</div>
-              <div class="tl-desc">逛 Loft、Standard Products，上 4–6 樓參觀室內企鵝水族館，溫暖親子友善。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">中午前後</div>
+              <div class="timeline-title">🏨 飯店寄放行李 & 札幌站周邊午餐</div>
+              <div class="timeline-desc">回 <strong>HOTEL MYSTAYS Sapporo Aspen</strong>（12/18–12/20 連住 3 晚）領取寄放行李並寄放隨身包（入住時間以確認信為準）。<br>
+              <strong>🍽️ 午餐口袋名單推薦：</strong><strong>根室花丸（JR Tower Stellar Place 6F 或 大同生命 miredo B1）</strong>、<strong>拉麵 札幌一粒庵</strong>（滑蛋味噌拉麵，孩子超愛）或 <strong>UCC Café Plaza（大通地下街）</strong>。</div>
             </div>
-            <div class="tl-item">
-              <div class="tl-time">18:45 - 20:45</div>
-              <div class="tl-title">🍜 狸小路採買 & 週五晚餐口袋名單</div>
-              <div class="tl-desc">4 丁目唐吉訶德＋狸屋伴手禮 ➔ 5 丁目藥妝比價 ➔ 晚餐推薦：<strong>吉山商店 狸小路店</strong>、<strong>らーめん空</strong>、<strong>麵屋雪風</strong>、<strong>RAZAN 燒肉</strong> 或 2 丁目湯咖哩／狸 COMICHI，順路摸狸神社肚子。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 14:00 - 15:30</div>
+              <div class="timeline-title">⚡ 大丸札幌店 8F：寶可夢中心 ＋ 玩具樓層（森林家族）</div>
+              <div class="timeline-desc"><strong>寶可夢商品優先！</strong>同棟玩具樓層尋找<strong>森林家族</strong>，款式與庫存以現場為準（大件戰利品可先拿回飯店放）。</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 15:30 - 17:30</div>
+              <div class="timeline-title">🎮 Yodobashi / Stellar Place 扭蛋巡禮</div>
+              <div class="timeline-desc">逛 Yodobashi 電器、玩具與扭蛋區，以及 Stellar Place（據介紹有 Bandai 官方扭蛋店），營業時間出發前請再確認。</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">傍晚 — 晚上</div>
+              <div class="timeline-title">🛍️ 狸小路商店街 ＋ 晚餐口袋名單</div>
+              <div class="timeline-desc">有遮棚的商店街免淋雪！3 丁目 moyuk（Loft、Standard Products、AOAO 企鵝水族館）➔ 4 丁目唐吉訶德＋狸屋伴手禮（ABC-MART 20:00 打烊先逛）➔ 5 丁目藥妝比價。<br>
+              <strong>🍽️ 晚餐口袋名單推薦：</strong><strong>吉山商店 狸小路店</strong>（焙煎芝麻味噌拉麵）、<strong>RAZAN 燒肉餐廳 すすきの南 4 條店</strong>（全天營業）、<strong>らーめん空</strong>、<strong>麵屋雪風 薄野本店</strong> 或 <strong>狸 COMICHI</strong>。</div>
             </div>
           </div>
         </div>
@@ -591,118 +853,71 @@
       <!-- DAY 4 -->
       <div id="day-4" class="day-content">
         <div class="card">
-          <span class="badge b-sky">DAY 4 · 12/19（六）｜宿：札幌白楊飯店（第 4 晚）</span>
-          <h2 style="font-size: 19px; font-weight: 900; margin: 8px 0 10px; color: #1e1b4b;">小樽雪景散策・避開尖峰雙離峰美食與特色伴手禮</h2>
-
+          <span class="badge-pill badge-blue">DAY 4 · 12/19（六）｜宿：札幌白楊飯店</span>
+          <h2 style="font-size: 19px; font-weight: 900; margin: 8px 0 10px; color: #1e1b4b;">小樽水族館企鵝散步・運河黃昏點燈與精選美食</h2>
+          
           <div class="route-flow">
-            <span class="route-step">🐟 10:30 早午餐</span>
+            <span class="route-step">🚆 08:30 搭JR至小樽</span>
             <span class="route-arrow">➔</span>
-            <span class="route-step">🚃 3分鐘JR至南小樽</span>
+            <span class="route-step">🐧 10:15 小樽水族館</span>
             <span class="route-arrow">➔</span>
-            <span class="route-step">🎶 12:00 逛堺町通</span>
+            <span class="route-step">🍣 14:30 運河＆堺町通美食</span>
             <span class="route-arrow">➔</span>
-            <span class="route-step">🍣 14:00 午後餐</span>
-            <span class="route-arrow">➔</span>
-            <span class="route-step">✨ 16:00 運河點燈</span>
-            <span class="route-arrow">➔</span>
-            <span class="route-step">🎁 UNGAPLUS 買同事禮</span>
+            <span class="route-step">✨ 16:00 運河點燈＆伴手禮</span>
           </div>
 
-          <div class="alert alert-mint">
-            ✨ <strong>完美避開 12:00–13:00 排隊尖峰：</strong> 10:30 先在小樽站周邊吃早午餐 ➔ 搭 <strong>3 分鐘 JR（每 12–20 分鐘一班，成人 210¥／兒童 100¥）</strong>到南小樽 ➔ 正午順下坡逛街 ➔ <strong>14:00 離峰吃第 2 餐</strong> ➔ 16:00 運河點燈後順逛 <strong>UNGAPLUS 小樽百貨</strong>買同事伴手禮，再走回小樽起站搭車！
+          <div class="alert-box mint">
+            🐧 <strong>當日重點與美食銜接：</strong><br>
+            • 小樽水族館冬季營業 <strong>2026/12/12–2027/2/23</strong>（12/19 在營業期間內），企鵝散步會依天氣或企鵝狀況調整，當天請看官網。<br>
+            • <strong>這天重點是水族館和運河黃昏，不排白色戀人公園</strong>（已移至 12/20）。<br>
+            • <strong>14:00 搭巴士回小樽站後剛好進入午後離峰時段</strong>，非常適合去堺町通與運河旁全日無午休的美食名店大快朵頤！
           </div>
 
           <div class="timeline">
-            <div class="tl-item">
-              <div class="tl-time">08:00 - 10:30</div>
-              <div class="tl-title">☕ 週六站前早餐 & 搭 JR 直達小樽車站</div>
-              <div class="tl-desc">08:00 可先至 <strong>猿田彦珈琲 D-LIFEPLACE 札幌店</strong> 吃早餐，再搭 JR 前往終點小樽車站（約 35–50 分鐘）。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 08:30</div>
+              <div class="timeline-title">🚆 札幌站出發（JR 前往小樽，約 35–50 分鐘）</div>
+              <div class="timeline-desc">週六 08:00 可先至 <strong>猿田彦珈琲 D-LIFEPLACE 札幌店</strong> 買咖啡早餐，再搭 JR 前往小樽車站。</div>
             </div>
-
-            <div class="tl-item">
-              <div class="tl-time">10:30 - 11:30</div>
-              <div class="tl-title">🍽️ 【早午餐離峰 3 選 1】小樽車站周邊</div>
-              <div class="choice-stack">
-                <div class="choice-box">
-                  <div class="choice-box-head">
-                    <strong>① 味處たけだ（武田鮮魚店直營）</strong>
-                    <a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=味処たけだ+小樽三角市場" target="_blank">📍 導航</a>
-                  </div>
-                  三角市場內（站旁 1 分）｜07:00–16:00｜市場內座位最充裕；推 ANA 特製丼、奶油烤帆立貝、現烤花魚定食。
-                </div>
-                <div class="choice-box">
-                  <div class="choice-box-head">
-                    <strong>② 滝波食堂（Takinami Shokudo）</strong>
-                    <a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=滝波食堂+小樽三角市場" target="_blank">📍 導航</a>
-                  </div>
-                  三角市場內（站旁 1 分）｜08:00–17:00｜自選 3–4 種配料「元祖わがまま丼」，另有烤魚定食與螃蟹味噌湯。
-                </div>
-                <div class="choice-box">
-                  <div class="choice-box-head">
-                    <strong>③ 若鶏時代 なると 本店（招牌炸半雞）</strong>
-                    <a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=若鶏時代+なると+本店+小樽" target="_blank">📍 導航</a>
-                  </div>
-                  小樽站步行 7 分｜11:00–21:00（無午休）｜11:00 開門免等，皮酥多汁不裹厚麵衣的炸半雞，不想早吃生食首選。
-                </div>
-              </div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 09:30 - 09:50</div>
+              <div class="timeline-title">🚌 小樽站轉乘北海道中央巴士（祝津方向）</div>
+              <div class="timeline-desc">前往「小樽水族館」，車程約 25 分鐘（巴士時刻與乘車處出發前請先確認；若想先在站前三角市場 <strong>味處たけだ / 滝波食堂</strong> 吃點早午餐，需留意巴士班次銜接）。</div>
             </div>
-
-            <div class="tl-item">
-              <div class="tl-time">11:45 - 12:00</div>
-              <div class="tl-title">🚃 搭 3 分鐘 JR 至「南小樽車站」</div>
-              <div class="tl-desc">往「札幌・新千歲」方向列車皆停靠，直接刷 Suica/ICOCA 進出站；若剛錯過班車，站前排班計程車約 5–6 分鐘（約 800–1,000¥）。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 10:15 - 13:30</div>
+              <div class="timeline-title">🐧 小樽水族館・企鵝雪中散步與海豚秀</div>
+              <div class="timeline-desc">冬季營業 10:00–16:00（最後入館 15:30）。<strong>11:00 有海豚、海狗表演</strong>；<strong>企鵝雪中散步約 10 分鐘，每天 11:30 / 12:40 / 13:30 / 14:40</strong>。午餐可在館內簡單墊肚子，或忍到 14:30 回市區吃大餐！</div>
             </div>
-
-            <div class="tl-item">
-              <div class="tl-time">12:00 - 14:00</div>
-              <div class="tl-title">🎶 正午順下坡・童話十字路口＆堺町通南段</div>
-              <div class="tl-desc"><strong>小樽音樂盒堂本館</strong>（每 15 分鐘蒸氣鐘）➔ <strong>LeTAO 總店</strong>（3F 免費展望台＋買總店限定「四種起司蜂蜜脆餅」）➔ <strong>北一硝子三號館</strong> ＆ <strong>大正硝子館</strong>（精緻玻璃小物）。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 14:00</div>
+              <div class="timeline-title">🚌 搭巴士返回小樽站（約 25 分鐘）</div>
+              <div class="timeline-desc">回程巴士時刻請先查好，避免在海風中久等。</div>
             </div>
-
-            <div class="tl-item">
-              <div class="tl-time">14:00 - 15:15</div>
-              <div class="tl-title">🍣 【午後離峰 3 選 1】堺町通至運河沿線（皆無午休）</div>
-              <div class="choice-stack">
-                <div class="choice-box">
-                  <div class="choice-box-head">
-                    <strong>① 小樽ポセイ丼 堺町総本店</strong>
-                    <a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=小樽ポセイ丼+堺町総本店" target="_blank">📍 導航</a>
-                  </div>
-                  堺町通中段｜11:00–18:00｜家庭桌席寬敞，供應豪華海鮮丼與炭火烤帝王蟹腳、烤帆立貝、烤玉米。
+            <div class="timeline-item">
+              <div class="timeline-time">約 14:30 - 16:30</div>
+              <div class="timeline-title">✨ 小樽運河黃昏點燈・堺町通＆午後離峰美食推薦</div>
+              <div class="timeline-desc">冬天約 16:00 前後日落，剛好看運河從日暮藍調到瓦斯燈點亮！順逛 <strong>音樂盒堂本館</strong>、<strong>LeTAO 總店</strong>、<strong>北一硝子三號館</strong>、<strong>六花亭 / 北菓樓</strong> 及運河旁 <strong>UNGAPLUS（買同事伴手禮）</strong>。<br>
+              <strong>🍽️ 14:30 午後離峰美食口袋名單（皆無午休、免排長隊）：</strong></div>
+              <div class="inline-choices">
+                <div class="inline-choice-item">
+                  <strong>① 迴轉壽司 函太郎 小樽店（Kantaro）</strong>｜運河旁港灣區（步行 5 分）｜週六 11:00–21:00<br>
+                  家庭沙發卡座寬敞，除現握壽司外還有玉子燒、烏龍麵與薯條，吃完散步回運河剛好接 16:00 點燈！
                 </div>
-                <div class="choice-box">
-                  <div class="choice-box-head">
-                    <strong>② かま栄（Kamaei）工廠直營店</strong>
-                    <a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=かま栄+工場直売店+小樽" target="_blank">📍 導航</a>
-                  </div>
-                  堺町通北段近運河｜09:00–18:00｜內用區隔窗看師傅捏魚板；必吃現炸「麵包捲」、起司與玉米魚板。
+                <div class="inline-choice-item">
+                  <strong>② 小樽ポセイ丼 堺町総本店</strong>｜堺町通商店街中段｜週六 11:00–18:00<br>
+                  供應豪華海鮮丼與現烤帝王蟹腳、烤帆立貝、烤玉米等炭火爐端燒。
                 </div>
-                <div class="choice-box">
-                  <div class="choice-box-head">
-                    <strong>③ 迴轉壽司 函太郎 小樽店（Kantaro）</strong>
-                    <a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=回転寿司+函太郎+小樽店" target="_blank">📍 導航</a>
-                  </div>
-                  運河旁步行 5 分｜11:00–21:00｜平板點餐、家庭沙發卡座寬敞，備有玉子燒、烏龍麵與薯條。
+                <div class="inline-choice-item">
+                  <strong>③ かま栄（Kamaei）工廠直營店</strong>｜堺町通北段（近運河）｜週六 09:00–18:00<br>
+                  百年手工魚板內用休息區，必吃現炸「麵包捲（パンロール）」與起司魚板，搭配六花亭／北菓樓甜點超滿足。
                 </div>
               </div>
             </div>
-
-            <div class="tl-item">
-              <div class="tl-time">15:15 - 15:45</div>
-              <div class="tl-title">🍪 堺町通北段伴手禮採買</div>
-              <div class="tl-desc"><strong>六花亭</strong>（2F 現場限定雪隆奶酪＋蘭姆葡萄夾心餅乾）＆ <strong>北菓樓</strong>（夢不思議泡芙＋同事最愛鹹食「北海道開拓米菓」）。</div>
-            </div>
-
-            <div class="tl-item">
-              <div class="tl-time">15:45 - 17:30</div>
-              <div class="tl-title">✨ 16:00 小樽運河點燈 ➔ 順逛 UNGAPLUS 小樽百貨</div>
-              <div class="tl-desc">淺草橋／中央橋拍暮色藍調與 63 盞瓦斯燈 ➔ 順路逛運河旁歷史倉庫選品店 <strong>UNGAPLUS（小樽百貨）</strong>，入手「小樽瓦燒年輪蛋糕」與「石炭炸麻花」給公司同事！（若臨時需要 3C 線材或暖手寶，可順逛車站對面<strong>唐吉訶德小樽店</strong>）。</div>
-            </div>
-
-            <div class="tl-item">
-              <div class="tl-time">17:45 - 20:00</div>
-              <div class="tl-title">🚆 小樽起站返札幌・週六晚餐推薦</div>
-              <div class="tl-desc">起站搭車全家人好找位子！回札幌後若想吃晚餐或宵夜，週六推薦 <strong>Toriton 北 8 條光星店</strong>、<strong>四季花丸 北口店（週六營業至 22:30）</strong> 或 <strong>北虎 北口店</strong>。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 16:45</div>
+              <div class="timeline-title">🚆 小樽 ➔ 搭 JR 返回札幌（約 17:35 前後抵達）</div>
+              <div class="timeline-desc">起站上車容易有座位；回札幌後<strong>晚餐口袋名單推薦：</strong>飯店步行 1–2 分鐘的 <strong>四季花丸 北口店</strong>、<strong>めしと純米（釜飯燒肉）</strong>、<strong>北虎 北口店</strong>，或計程車 5 分鐘的 <strong>Toriton Kita 8（北8條光星店）</strong>。</div>
             </div>
           </div>
         </div>
@@ -711,26 +926,45 @@
       <!-- DAY 5 -->
       <div id="day-5" class="day-content">
         <div class="card">
-          <span class="badge b-pink">DAY 5 · 12/20（日）｜宿：札幌白楊飯店（第 5 晚）</span>
-          <h2 style="font-size: 19px; font-weight: 900; margin: 8px 0 10px; color: #1e1b4b;">旭川旭山動物園・超萌企鵝雪地漫步</h2>
-          <div class="alert alert-warn">
-            ⏰ <strong>週日營業特別提醒：</strong> 觀光巴士通常 08:00 集合，而猿田彦珈琲週日 08:00 才開門，建議<strong>前一晚先在超商買好麵包與飯糰</strong>！另外，四季花丸北口店週日 20:30 提早打烊。
+          <span class="badge-pill badge-pink">DAY 5 · 12/20（日）｜宿：札幌白楊飯店</span>
+          <h2 style="font-size: 19px; font-weight: 900; margin: 8px 0 10px; color: #1e1b4b;">美唄 Alpen SNOWLAND 玩雪・白色戀人公園燈飾</h2>
+          
+          <div class="alert-box danger">
+            ⚠️ <strong>體力與雪場開放提醒：</strong><br>
+            • <strong>這天移動多：</strong>美唄來回加上傍晚白色戀人公園，孩子玩雪後會很累，<strong>若太晚或太累，先取消白色戀人公園</strong>。<br>
+            • 雪場預定 <strong>2026/12/10 開幕</strong>，實際依積雪調整（出發前一週再看官網，雪場暫訂可再調整）；接駁與 JR 時刻需先排好，才能確認是否趕得上傍晚燈飾。
           </div>
+
           <div class="timeline">
-            <div class="tl-item">
-              <div class="tl-time">08:00 - 11:00</div>
-              <div class="tl-title">🚌 札幌站前搭一日遊巴士團 ➔ 旭山動物園</div>
-              <div class="tl-desc">優先選擇直達觀光專車，免去冬季帶著兩位孩子頻繁轉乘電車受凍；旭川內陸較冷，記得貼足底暖暖包。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 08:30</div>
+              <div class="timeline-title">🚆 札幌站出發（JR 往美唄站 ＋ 雪場接駁車）</div>
+              <div class="timeline-desc">週日 08:00 可先在 <strong>猿田彦珈琲 D-LIFEPLACE 札幌店</strong> 買早餐，再搭 JR 前往美唄站（岩見澤方向，車次與是否需轉乘出發前確認）；出站轉雪場接駁車（單程約 ¥300，班次與預約方式請先確認）。</div>
             </div>
-            <div class="tl-item">
-              <div class="tl-time">11:00 - 14:30</div>
-              <div class="tl-title">🐧 企鵝雪地漫步遊行 & 北極熊館</div>
-              <div class="tl-desc">觀賞超人氣國王企鵝遊行、海豹垂直水道與北極熊跳水。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 10:00 - 10:30</div>
+              <div class="timeline-title">⛄ 抵達 Alpen SNOWLAND 美唄</div>
+              <div class="timeline-desc">營業時間 09:00–16:15（最後入場 15:00）；雪場不在美唄市區，車站到園區需搭接駁車。</div>
             </div>
-            <div class="tl-item">
-              <div class="tl-time">15:00 - 20:30</div>
-              <div class="tl-title">🦀 專車返札幌 & 北海道最後一晚慶祝大餐</div>
-              <div class="tl-desc">週日晚餐首選：<strong>札幌螃蟹本家（建議提前預約和式包廂）</strong>、<strong>根室花丸 JR Tower 店</strong>、<strong>Toriton 北 8 條店</strong> 或飯店旁 <strong>めしと純米</strong>（營業至 23:00），餐後整理行李。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 10:30 - 14:30</div>
+              <div class="timeline-title">🛷 雪地遊樂大放電（雪胎・泡泡球・雪上足球）</div>
+              <div class="timeline-desc">入場費含雪胎、泡泡球、胖胎車、雪上足球、兒童玩雪區（雪上橡皮艇等另收費）。<strong>中午在園區休息，記得幫孩子換乾的手套與襪子！</strong></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 15:00</div>
+              <div class="timeline-title">🚆 離開雪場返回札幌（約 16:30–17:30 抵達）</div>
+              <div class="timeline-desc">依接駁與 JR 時刻返回札幌，抵達後<strong>先回飯店換掉濕衣服、稍作休息</strong>。</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 17:30 - 19:00</div>
+              <div class="timeline-title">🏰 白色戀人公園燈飾（視體力彈性前往）</div>
+              <div class="timeline-desc">搭地鐵東西線至「宮之澤站」步行約 7 分鐘；玫瑰花園聖誕燈飾可免費觀賞（不做手作體驗，純賞燈拍照）。</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-time">晚上</div>
+              <div class="timeline-title">🦀 札幌最後一晚大餐・口袋名單推薦</div>
+              <div class="timeline-desc">視體力決定在宮之澤周邊或回札幌站周邊用餐！推薦：<strong>札幌螃蟹本家 札幌站前本店</strong>（和式包廂吃帝王蟹慶祝）、<strong>Toriton Kita 8（北8條光星店）</strong>、<strong>根室花丸</strong> 或飯店旁 <strong>めしと純米</strong>（注意：<strong>四季花丸北口店週日 20:30 提早打烊</strong>）。</div>
             </div>
           </div>
         </div>
@@ -739,438 +973,733 @@
       <!-- DAY 6 -->
       <div id="day-6" class="day-content">
         <div class="card">
-          <span class="badge b-sky">DAY 6 · 12/21（一）｜返台回家</span>
-          <h2 style="font-size: 19px; font-weight: 900; margin: 8px 0 10px; color: #1e1b4b;">新千歲機場掃貨大盒伴手禮・滿載而歸</h2>
-          <div class="alert alert-danger">
-            🚨 <strong>回程時間紅線：</strong> 華航 CI131 於 14:40 起飛，<strong>建議 11:00–11:30 就從札幌出發</strong>！預留雪天誤點、國內線伴手禮掃貨、國際線托運與安檢至少 3 小時緩衝。
+          <span class="badge-pill badge-blue">DAY 6 · 12/21（一）｜返台回家</span>
+          <h2 style="font-size: 19px; font-weight: 900; margin: 8px 0 10px; color: #1e1b4b;">返台・新千歲機場伴手禮採買</h2>
+          <div class="alert-box danger">
+            🚨 <strong>回程關鍵時間提醒：</strong> 華航 CI131 於 14:40 起飛，<strong>建議約 11:00–11:30 從札幌出發前往新千歲機場</strong>，為候車、報到、托運行李與安檢預留充足緩衝！不要把最後一天排太遠；若要逛機場商店，抵達機場後再安排。
           </div>
           <div class="timeline">
-            <div class="tl-item">
-              <div class="tl-time">08:00 - 10:45</div>
-              <div class="tl-title">☕ 週一早餐 & 退房（可排公園最後踏雪）</div>
-              <div class="tl-desc">推薦 <strong>猿田彦珈琲（07:00 開門）</strong> 或 <strong>UCC Café Plaza（09:00 開門）</strong>；11:00 開門的壽司拉麵店會太趕。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">08:00 - 10:45</div>
+              <div class="timeline-title">☕ 早餐、退房 & 札幌站最後補貨</div>
+              <div class="timeline-desc">可於 <strong>猿田彦珈琲</strong>（07:00 開門）或 <strong>UCC Café Plaza</strong>（09:00 開門）享用早餐，退房後整理行李準備前往機場。</div>
             </div>
-            <div class="tl-item">
-              <div class="tl-time">11:00 - 12:00</div>
-              <div class="tl-title">🚆 札幌 ➔ 新千歲機場 (JR 快速 Airport)</div>
-              <div class="tl-desc">車程約 37–45 分鐘，為候車與降雪預留餘裕。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">約 11:00 - 11:30</div>
+              <div class="timeline-title">🚆 札幌站出發 ➔ 前往新千歲機場 (JR 快速 Airport)</div>
+              <div class="timeline-desc">HOTEL MYSTAYS Sapporo Aspen 退房後，搭 JR 快速 Airport 前往新千歲機場（車程約 37–45 分鐘）。</div>
             </div>
-            <div class="tl-item">
-              <div class="tl-time">12:15 - 14:00</div>
-              <div class="tl-title">🎁 新千歲國內線大盒伴手禮採購 & 報到</div>
-              <div class="tl-desc">把體積大的<strong>薯條三兄弟、白色戀人、札幌農學校大盒裝、生巧克力</strong>留在這裡一次買齊，再吃支北海道特濃霜淇淋，完成托運安檢。</div>
+            <div class="timeline-item">
+              <div class="timeline-time">中午前後</div>
+              <div class="timeline-title">🛍️ 抵達新千歲機場・報到托運＆國內線伴手禮掃貨</div>
+              <div class="timeline-desc">先辦理國際線報到、托運行李與確認安檢排隊狀況；若有空檔可逛國內線商場集中採買大盒裝白色戀人、薯條三兄弟、札幌農學校牛奶餅乾、六花亭與北菓樓泡芙。</div>
             </div>
-            <div class="tl-item">
-              <div class="tl-time">14:40 - 18:15</div>
-              <div class="tl-title">✈️ 新千歲 (CTS) ➔ 桃園 (TPE)</div>
-              <div class="tl-desc">搭乘中華航空 CI131 經濟艙平安返抵台灣！</div>
+            <div class="timeline-item">
+              <div class="timeline-time">14:40 - 18:15</div>
+              <div class="timeline-title">✈️ 航班起飛返台 (CTS ➔ TPE 桃園)</div>
+              <div class="timeline-desc">搭乘 China Airlines CI131 經濟艙，18:15（台灣時間）平安返抵桃園機場！</div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- ================= TAB 2: 美食名單 (20 間 + 分類篩選) ================= -->
-    <section id="tab-food" class="tab-pane">
-      <div class="card">
-        <div class="card-title"><span class="icon-bubble">🍽️</span>20 間精選口袋名單（小樽 6 間 ＋ 札幌 14 間）</div>
-        <div class="filter-row" id="foodFilters">
-          <button type="button" class="filter-chip active" onclick="filterFood('all', this)">全部 (20)</button>
-          <button type="button" class="filter-chip" onclick="filterFood('otaru', this)">🛶 小樽雙離峰 (6)</button>
-          <button type="button" class="filter-chip" onclick="filterFood('breakfast', this)">☀️ 札幌早餐 (2)</button>
-          <button type="button" class="filter-chip" onclick="filterFood('sushi', this)">🍣 壽司海鮮 (5)</button>
-          <button type="button" class="filter-chip" onclick="filterFood('yakiniku', this)">🥩 燒肉釜飯 (3)</button>
-          <button type="button" class="filter-chip" onclick="filterFood('ramen', this)">🍜 人氣拉麵 (4)</button>
-        </div>
-
-        <div class="item-grid" id="foodListContainer">
-          <!-- 小樽 6 間 -->
-          <div class="item-card otaru" data-cat="otaru">
-            <div class="item-head"><span class="item-name">味處たけだ（武田鮮魚店直營食堂）</span><span class="badge b-sky">D4 10:30 早午餐</span></div>
-            <div class="item-meta">📍 小樽三角市場內（小樽站步行 1 分）｜⏰ 週六 07:00–16:00<br>💡 市場內座位最充裕；推 ANA 特製丼、奶油烤帆立貝與孩子愛的現烤花魚定食。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=味処たけだ+小樽三角市場" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <div class="item-card otaru" data-cat="otaru">
-            <div class="item-head"><span class="item-name">滝波食堂（Takinami Shokudo）</span><span class="badge b-sky">D4 10:30 早午餐</span></div>
-            <div class="item-meta">📍 小樽三角市場內（小樽站步行 1 分）｜⏰ 週六 08:00–17:00<br>💡 可任選 3–4 種海鮮配料的元祖任性丼，另有現烤魚定食與螃蟹味噌湯。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=滝波食堂+小樽三角市場" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <div class="item-card otaru" data-cat="otaru">
-            <div class="item-head"><span class="item-name">若鶏時代 なると 本店（招牌炸半雞）</span><span class="badge b-pink">D4 11:00 開門免等</span></div>
-            <div class="item-meta">📍 小樽市稻穗 3-16-13（小樽站步行 7 分）｜⏰ 每日 11:00–21:00（無午休）<br>💡 外酥內嫩、不裹厚麵衣的招牌炸半雞與壽司定食，適合不想一早吃生冷海鮮的家庭。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=若鶏時代+なると+本店+小樽" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <div class="item-card otaru" data-cat="otaru">
-            <div class="item-head"><span class="item-name">小樽ポセイ丼 堺町総本店</span><span class="badge b-mint">D4 14:00 午後餐</span></div>
-            <div class="item-meta">📍 堺町通商店街中段｜⏰ 每日 11:00–18:00（全日無午休）<br>💡 家庭桌席寬敞，豪華海鮮丼搭配現烤帝王蟹腳、烤帆立貝與烤玉米。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=小樽ポセイ丼+堺町総本店" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <div class="item-card otaru" data-cat="otaru">
-            <div class="item-head"><span class="item-name">かま栄（Kamaei）工廠直營店</span><span class="badge b-mint">D4 14:00 午後餐</span></div>
-            <div class="item-meta">📍 堺町通北段近運河｜⏰ 每日 09:00–18:00（全日無午休）<br>💡 百年魚板內用休息區，隔窗看師傅現捏魚板；必吃現炸麵包捲（パンロール）與起司魚板。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=かま栄+工場直売店+小樽" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <div class="item-card otaru" data-cat="otaru">
-            <div class="item-head"><span class="item-name">迴轉壽司 函太郎 小樽店（Kantaro）</span><span class="badge b-amber">D4 14:00 午後餐</span></div>
-            <div class="item-meta">📍 小樽運河旁港灣區（步行 5 分）｜⏰ 每日 11:00–21:00（全日無午休）<br>💡 平板點餐＋寬敞沙發卡座，除握壽司外有玉子燒、烏龍麵、薯條，餐後剛好接運河點燈。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=回転寿司+函太郎+小樽店" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <!-- 札幌早餐 2 間 -->
-          <div class="item-card" data-cat="breakfast">
-            <div class="item-head"><span class="item-name">1. 猿田彦珈琲 D-LIFEPLACE 札幌店</span><span class="badge b-mint">推 D2 / D4 / D6 早</span></div>
-            <div class="item-meta">📍 北 3 條西 4 丁目 1F（札幌站地下連通）｜⏰ 一～四 07:00–22:00、五至 23:00、六 08:00–23:00、日 08:00–22:00<br>💡 平日 07:00 即營業，地下連通免吹雪風（注意週日 08:00 才開）。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=猿田彦珈琲+D-LIFEPLACE+札幌店" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <div class="item-card" data-cat="breakfast">
-            <div class="item-head"><span class="item-name">2. UCC Café Plaza 大通 Aurora Town 店</span><span class="badge b-sky">推 D3 午茶 / D6 早</span></div>
-            <div class="item-meta">📍 大通西 2 丁目 Aurora Town 地下街｜⏰ 每日 09:00–20:00<br>💡 溫暖地下街內免受寒風，適合 09:00 後三明治早餐或大通商圈歇腳。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=UCC+Café+Plaza+オーロラタウン" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <!-- 札幌壽司海鮮 5 間 -->
-          <div class="item-card" data-cat="sushi">
-            <div class="item-head"><span class="item-name">3. 壽司＆爐端燒 四季花丸 北口店</span><span class="badge b-pink">推 D1 / D4 晚・步行 2 分</span></div>
-            <div class="item-meta">📍 北 7 條西 1 丁目 NCO 札幌 B1｜⏰ 一～四 11:00–14:50, 17:00–21:30｜五晚至 22:30｜六 11:00–22:30｜日 11:00–20:30<br>💡 離飯店最近的花丸分店，有爐端燒烤魚與熟食定食，週日較早打烊（20:30）。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=壽司＆爐端燒+四季花丸+北口店" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <div class="item-card" data-cat="sushi">
-            <div class="item-head"><span class="item-name">4. 根室花丸 JR Tower Stellar Place 店</span><span class="badge b-amber">推 D3 午 / D5 晚</span></div>
-            <div class="item-meta">📍 JR Tower Stellar Place 6F｜⏰ 每日 11:00–22:00<br>💡 先抽號碼牌掃 QR Code 用手機看叫號，等候空檔剛好逛樓下商場。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=迴轉壽司+根室花丸+JR+Tower+Stellar+Place店" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <div class="item-card" data-cat="sushi">
-            <div class="item-head"><span class="item-name">5. 根室花丸 大同生命 miredo 店</span><span class="badge b-sky">推 D3 午 / D1 晚</span></div>
-            <div class="item-meta">📍 北 3 條西 3 丁目 大同生命大樓 B1F｜⏰ 每日 11:00–22:00<br>💡 地下步行道 Chi-Ka-Ho 直達免吹雪風；必點鮮干貝與現蒸茶碗蒸。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=迴轉壽司+根室花丸+大同生命札幌大樓miredo店" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <div class="item-card" data-cat="sushi">
-            <div class="item-head"><span class="item-name">6. Toriton Kita 8（北 8 條光星店）</span><span class="badge b-mint">推 D4 / D5 晚</span></div>
-            <div class="item-meta">📍 東區北 8 條東 5 丁目（計程車約 5 分）｜⏰ 每日 11:00–22:00<br>💡 獨立路面店家庭卡座寬敞，厚切干貝與熟食豐富，建議 16:30–17:00 先抽牌。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=Toriton+Kita+8+札幌" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <div class="item-card" data-cat="sushi">
-            <div class="item-head"><span class="item-name">7. 札幌螃蟹本家 札幌站前本店</span><span class="badge b-pink">推 D5 最後一晚大餐</span></div>
-            <div class="item-meta">📍 北 3 條西 2 丁目 1-18｜⏰ 每日 11:30–22:00<br>💡 站前老字號螃蟹會席，建議提前預約和式包廂，免排隊安心吃帝王蟹。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=札幌螃蟹本家+札幌站前本店" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <!-- 札幌燒肉釜飯 3 間 -->
-          <div class="item-card" data-cat="yakiniku">
-            <div class="item-head"><span class="item-name">8. めしと純米（Meshitojunmai）北口店</span><span class="badge b-pink">推 D1 / D5 晚・步行 1 分</span></div>
-            <div class="item-meta">📍 北 9 條西 4 丁目 5-2 1F（飯店隔壁）｜⏰ 每日 17:00–23:00<br>💡 現煮北海道米釜飯配燒肉，吃完散步 1 分鐘即回房，冬夜最省心。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=めしと純米+札幌駅北口店" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <div class="item-card" data-cat="yakiniku">
-            <div class="item-head"><span class="item-name">9. 北虎（Kitatora）札幌駅北口店</span><span class="badge b-sky">推 D1 / D4 晚・步行 2 分</span></div>
-            <div class="item-meta">📍 北 7 條西 1 丁目 NCO 札幌 B1F｜⏰ 每日 17:00–23:30<br>💡 北口地下連通大樓，供應北海道海鮮、烤物與鄉土料理（建議指定禁菸席）。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=北虎+札幌駅北口店" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <div class="item-card" data-cat="yakiniku">
-            <div class="item-head"><span class="item-name">10. RAZAN 燒肉 すすきの南 4 條店</span><span class="badge b-mint">推 D3 狸小路後晚餐</span></div>
-            <div class="item-meta">📍 南 4 條西 2 丁目 RECOLTE SAPPORO 1F｜⏰ 每日 11:00–24:00（全天無休）<br>💡 鄰近狸小路南側，可單點各式油脂適中牛肉部位，用餐彈性高。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=RAZAN焼肉レストランすすきの南4条店" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <!-- 札幌拉麵 4 間 -->
-          <div class="item-card" data-cat="ramen">
-            <div class="item-head"><span class="item-name">11. 拉麵 札幌一粒庵</span><span class="badge b-amber">推 D3 午（週二公休）</span></div>
-            <div class="item-meta">📍 北 4 條西 1 丁目 Hokuren 大樓 B1｜⏰ 週三～五及日 11:00–15:00, 17:00–21:00｜週六全日｜週一至 16:00<br>💡 滑蛋元氣味噌拉麵溫潤不死鹹，孩子接受度極高。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=拉麵+札幌一粒庵" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <div class="item-card" data-cat="ramen">
-            <div class="item-head"><span class="item-name">12. 吉山商店 狸小路店</span><span class="badge b-pink">推 D3 晚・狸小路 5 丁目</span></div>
-            <div class="item-meta">📍 南 3 條西 5 丁目 33 1F｜⏰ 每日 11:00–22:30<br>💡 逛狸小路 5 丁目藥妝比價時最順路，招牌焙煎芝麻味噌拉麵超暖胃。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=吉山商店+狸小路店" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <div class="item-card" data-cat="ramen">
-            <div class="item-head"><span class="item-name">13. らーめん空 札幌すすきの店</span><span class="badge b-sky">推 D3 晚・營業至深夜</span></div>
-            <div class="item-meta">📍 南 3 條西 5 丁目 1-1｜⏰ 一～六 11:00–03:00｜日 11:00–01:00<br>💡 狸小路與薄野交界，晚間逛街結束不怕打烊。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=らーめん空+札幌すすきの店" target="_blank">📍 Google 地圖</a></div>
-          </div>
-
-          <div class="item-card" data-cat="ramen">
-            <div class="item-head"><span class="item-name">14. 麵屋雪風 薄野本店</span><span class="badge b-mint">推 D3 晚・濃厚味噌</span></div>
-            <div class="item-meta">📍 南 7 條西 4 丁目 2-6｜⏰ 一～四 11–14, 18–02:30｜五六晚至 03:30｜日晚至 24:00<br>💡 三種味噌融合雞白湯底，搭配手工煎餃非常對味。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=麵屋雪風+薄野本店" target="_blank">📍 Google 地圖</a></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= TAB 3: 同事伴手禮 & 小樽特色商店 (全新升級!) ================= -->
-    <section id="tab-souvenir" class="tab-pane">
-      <div class="card">
-        <div class="card-title"><span class="icon-bubble">🎁</span>辦公室同事伴手禮採買追蹤（常溫・獨立包裝）</div>
-        <div class="alert alert-mint">
-          💡 <strong>聰明採買策略：</strong> 小樽專攻<strong>「獨家限定、文青不撞款」</strong>；體積大的<strong>薯條三兄弟、白色戀人、札幌農學校大盒裝</strong>留到 <strong>Day 6 新千歲機場</strong>入關前再一次掃貨，省力不提重物！
-        </div>
-        <div class="alert alert-danger">
-          💳 <strong>免稅拆封紅線：</strong> 餅乾糖果屬「消耗品」，未稅滿 5,000 日圓可退稅，但店家會以透明袋密封，<strong>在日本境內（含飯店）嚴禁拆封</strong>！自己要吃的宵夜請分開結帳。
-        </div>
-
-        <div style="font-size: 13px; font-weight: 800; color: #db2777; margin: 12px 0 8px;">📍 Day 4 小樽獨家＆必買伴手禮（可點 + / - 記錄購買盒數）</div>
-        <div id="souvenirOtaruList"></div>
-
-        <div style="font-size: 13px; font-weight: 800; color: #0284c7; margin: 14px 0 8px;">✈️ Day 6 新千歲機場再買（大盒體積款・免提雪地）</div>
-        <div id="souvenirAirportList"></div>
-
-        <div style="margin-top: 10px; text-align: right; font-size: 13px; font-weight: 900; color: var(--primary-dark);" id="souvenirTotalSummary">
-          📦 目前預計／已購總計：0 盒
-        </div>
+    <!-- TAB 2: 美食口袋名單 (完整保留您的20間精選美食＋餐期對照提醒) -->
+    <div id="tab-food" class="tab-pane" style="display: none;">
+      <div class="alert-box info">
+        🍽️ <strong>美食口袋名單總覽（小樽雙離峰 6 間 ＋ 札幌飯店周邊 14 間）：</strong><br>
+        已依最新行程調整建議造訪日！可點選下方分類標籤快速篩選，每間皆附「Google 地圖一鍵導航」按鈕。
       </div>
 
-      <div class="card">
-        <div class="card-title"><span class="icon-bubble">🏛️</span>小樽特殊主題商店（Day 4 順逛路線）</div>
-        <div class="item-grid">
-          <div class="item-card special">
-            <div class="item-head"><span class="item-name">1. UNGAPLUS（小樽百貨｜百年倉庫選品店）</span><span class="badge b-pink">運河點燈後必逛</span></div>
-            <div class="item-meta">📍 小樽市色內 2-1-20（舊小樽倉庫內，運河步行返車站動線上）<br>💡 以北前船歷史為主題的高質感選品店！專賣獨家「小樽瓦燒年輪蛋糕」、「石炭炸麻花」、罐頭與文青復古雜貨，包裝超有故事感。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=UNGAPLUS+小樽" target="_blank">📍 Google 地圖</a></div>
-          </div>
+      <div class="filter-bar">
+        <button class="filter-pill active" onclick="filterFood('all', this)">✨ 全部 20 間</button>
+        <button class="filter-pill" onclick="filterFood('otaru', this)">🛶 小樽精選 (6)</button>
+        <button class="filter-pill" onclick="filterFood('breakfast', this)">☀️ 札幌早餐輕食 (2)</button>
+        <button class="filter-pill" onclick="filterFood('sushi', this)">🍣 迴轉壽司海鮮 (5)</button>
+        <button class="filter-pill" onclick="filterFood('yakiniku', this)">🥩 燒肉釜飯鄉土 (3)</button>
+        <button class="filter-pill" onclick="filterFood('ramen', this)">🍜 人氣拉麵 (4)</button>
+      </div>
 
-          <div class="item-card special">
-            <div class="item-head"><span class="item-name">2. 北一硝子 三號館 ＆ 大正硝子館</span><span class="badge b-sky">百年玻璃工藝</span></div>
-            <div class="item-meta">📍 小樽堺町通沿線｜💡 精緻玻璃筷架、醬油瓶、清酒杯與小動物擺飾，店家會細心包防撞紙，適合送給好同事或主管。</div>
-            <div class="item-foot">
-              <a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=北一硝子+三号館+小樽" target="_blank">📍 北一硝子</a>
-              <a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=大正硝子館+本店+小樽" target="_blank">📍 大正硝子館</a>
+      <!-- 小樽 6 間推薦 -->
+      <div class="card food-section" data-cat="otaru">
+        <div class="card-title">
+          <span class="icon-bubble">🛶</span>Day 4 小樽精選美食推薦（三角市場／堺町通／運河沿線）
+        </div>
+        <div class="food-list">
+          <div class="food-card otaru-highlight">
+            <div class="food-card-header">
+              <span class="food-name">【小樽站旁】① 味處たけだ（武田鮮魚店直營食堂）</span>
+              <span class="badge-pill badge-blue">小樽站步行 1 分</span>
+            </div>
+            <div class="food-meta">
+              📍 小樽三角市場內（小樽市稻穗 3 丁目 10-16）｜⏰ 週六 07:00–16:00<br>
+              💡 市場內規模最大、座位較充裕；推「ANA 特製丼」、奶油烤帆立貝與小朋友愛吃的現烤花魚定食。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=味処たけだ+小樽三角市場" target="_blank">📍 地圖導航</a>
             </div>
           </div>
 
-          <div class="item-card special">
-            <div class="item-head"><span class="item-name">3. 小樽音樂盒堂 本館</span><span class="badge b-amber">童話十字路口</span></div>
-            <div class="item-meta">📍 小樽市住吉町 4-1｜⏰ 09:00–18:00｜💡 陳列數萬款木盒、水晶球、蒸氣鐘與招財貓造型音樂盒。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=小樽音樂盒堂+本館" target="_blank">📍 Google 地圖</a></div>
+          <div class="food-card otaru-highlight">
+            <div class="food-card-header">
+              <span class="food-name">【小樽站旁】② 滝波食堂（Takinami Shokudo）</span>
+              <span class="badge-pill badge-blue">小樽站步行 1 分</span>
+            </div>
+            <div class="food-meta">
+              📍 小樽三角市場內（小樽市稻穗 3 丁目 10-16）｜⏰ 週六 08:00–17:00<br>
+              💡 可自由任選 3–4 種配料的「元祖わがまま丼」，不吃生食的孩子也能點現烤魚定食與螃蟹味噌湯。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=滝波食堂+小樽三角市場" target="_blank">📍 地圖導航</a>
+            </div>
           </div>
 
-          <div class="item-card special">
-            <div class="item-head"><span class="item-name">4. 小樽藝術村 博物館商店（Otaru Art Base）</span><span class="badge b-indigo">質感文具雜貨</span></div>
-            <div class="item-meta">📍 小樽運河旁（舊三井銀行周邊）｜💡 彩繪玻璃主題資料夾、明信片與金屬書籤，輕巧不怕摔。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=小樽芸術村+ミュージアムショップ" target="_blank">📍 Google 地圖</a></div>
+          <div class="food-card otaru-highlight">
+            <div class="food-card-header">
+              <span class="food-name">【小樽站旁】③ 若鶏時代 なると 本店（招牌炸半雞）</span>
+              <span class="badge-pill badge-pink">全日無午休</span>
+            </div>
+            <div class="food-meta">
+              📍 小樽市稻穗 3 丁目 16-13（小樽站步行 7 分鐘）｜⏰ 週六 11:00–21:00（無午休）<br>
+              💡 外皮金黃酥脆、不裹厚麵衣的「招牌炸半雞」與握壽司定食，適合不吃生冷海鮮的家庭。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=若鶏時代+なると+本店+小樽" target="_blank">📍 地圖導航</a>
+            </div>
           </div>
 
-          <div class="item-card special">
-            <div class="item-head"><span class="item-name">5. 田中酒造 龜甲藏（小樽唯一地酒釀造廠）</span><span class="badge b-mint">免費試飲清酒/甘酒</span></div>
-            <div class="item-meta">📍 小樽市信香町 2-2（近南小樽）｜💡 石造倉庫酒藏，可試飲小樽限定清酒、梅酒與無酒精甘酒，適合送愛小酌的同事。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=田中酒造+亀甲蔵+小樽" target="_blank">📍 Google 地圖</a></div>
+          <div class="food-card otaru-highlight">
+            <div class="food-card-header">
+              <span class="food-name">【午後 14:30 離峰首選】① 小樽ポセイ丼 堺町総本店</span>
+              <span class="badge-pill badge-mint">全日無午休</span>
+            </div>
+            <div class="food-meta">
+              📍 小樽市堺町 5-25（堺町通商店街中段）｜⏰ 週六 11:00–18:00<br>
+              💡 14:00 水族館搭巴士回市區後剛好離峰入座！家庭桌席寬敞，供應豪華海鮮丼與現烤帝王蟹腳、烤帆立貝。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=小樽ポセイ丼+堺町総本店" target="_blank">📍 地圖導航</a>
+            </div>
           </div>
 
-          <div class="item-card" style="background:#f8fafc;">
-            <div class="item-head"><span class="item-name">🔌 小樽臨時 3C 應急補貨：唐吉訶德 小樽店</span><span class="badge b-amber">小樽站對面</span></div>
-            <div class="item-meta">📍 長崎屋小樽店內（小樽站步行 5 分）｜⏰ 09:00–21:00｜💡 小樽觀光區無大型電器行，主力 3C 請留在 Day 3 札幌站前買齊；臨時缺充電線、行動電源、暖手寶或 Switch 遊戲片可來這補貨。</div>
-            <div class="item-foot"><a class="mini-map-btn" href="https://www.google.com/maps/search/?api=1&query=ドン・キホーテ+小樽店" target="_blank">📍 Google 地圖</a></div>
+          <div class="food-card otaru-highlight">
+            <div class="food-card-header">
+              <span class="food-name">【午後 14:30 離峰首選】② かま栄（Kamaei）工廠直營店</span>
+              <span class="badge-pill badge-mint">看師傅捏魚板</span>
+            </div>
+            <div class="food-meta">
+              📍 小樽市堺町 3-7（堺町通北段、近小樽運河）｜⏰ 週六 09:00–18:00<br>
+              💡 百年手工魚板老店，設有內用休息區，可隔窗看製作過程；必吃現炸「麵包捲（パンロール）」與起司魚板。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=かま栄+工場直売店+小樽" target="_blank">📍 地圖導航</a>
+            </div>
+          </div>
+
+          <div class="food-card otaru-highlight">
+            <div class="food-card-header">
+              <span class="food-name">【午後 14:30 離峰首選】③ 迴轉壽司 函太郎 小樽店（Kantaro）</span>
+              <span class="badge-pill badge-yellow">離峰卡座寬敞</span>
+            </div>
+            <div class="food-meta">
+              📍 小樽市港町 5-4（小樽運河旁步行約 5 分鐘）｜⏰ 週六 11:00–21:00<br>
+              💡 平板點餐且家庭沙發座寬敞，除壽司外還有玉子燒、烏龍麵與薯條，餐後走回運河剛好銜接 16:00 點燈。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=回転寿司+函太郎+小樽店" target="_blank">📍 地圖導航</a>
+            </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- ================= TAB 4: 航班與住宿 ================= -->
-    <section id="tab-flights" class="tab-pane">
-      <div class="card">
-        <div class="card-title"><span class="icon-bubble">🏨</span>住宿總覽（共 5 晚）</div>
-        <div class="item-grid">
-          <div class="item-card">
-            <span class="badge b-indigo" style="align-self:flex-start;">第 1 晚 · 12/16（三）</span>
-            <div class="item-name">札幌白楊飯店（MYStays Sapporo Aspen）</div>
-            <div class="item-meta">札幌站北口步行約 5 分鐘，緊鄰北口美食圈，採買極便利。</div>
+      <!-- 札幌早餐咖啡輕食 -->
+      <div class="card food-section" data-cat="breakfast">
+        <div class="card-title">
+          <span class="icon-bubble">☀️</span>札幌早餐・咖啡輕食（札幌站／大通地下街）
+        </div>
+        <div class="food-list">
+          <div class="food-card">
+            <div class="food-card-header">
+              <span class="food-name">1. 猿田彦珈琲 D-LIFEPLACE 札幌店</span>
+              <span class="badge-pill badge-mint">建議 Day 2–6 早餐</span>
+            </div>
+            <div class="food-meta">
+              📍 中央區北 3 條西 4 丁目 D-LIFEPLACE 札幌 1F（札幌站地下連通）<br>
+              ⏰ 週一至四 07:00–22:00｜週五 07:00–23:00｜週六 08:00–23:00｜週日 08:00–22:00<br>
+              💡 平日 07:00、週末 08:00 營業，最適合早起搭車前往登別、小樽、美唄或返台前的快速早餐。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=猿田彦珈琲+D-LIFEPLACE+札幌店" target="_blank">📍 地圖導航</a>
+            </div>
           </div>
-          <div class="item-card special">
-            <span class="badge b-pink" style="align-self:flex-start;">第 2 晚 · 12/17（四）✨ 溫泉體驗夜</span>
-            <div class="item-name">登別溫泉飯店（登別溫泉區）</div>
-            <div class="item-meta">💡 <strong>行李撇步：</strong>大件行李箱先寄放札幌白楊飯店櫃檯，全家帶過夜包輕裝出發！</div>
-          </div>
-          <div class="item-card">
-            <span class="badge b-indigo" style="align-self:flex-start;">第 3–5 晚 · 12/18（五）— 12/20（日）連住 3 晚</span>
-            <div class="item-name">札幌白楊飯店（MYStays Sapporo Aspen）</div>
-            <div class="item-meta">12/18 返回札幌領回寄放行李辦理續住，作為市區、小樽與旭川基地。</div>
+
+          <div class="food-card">
+            <div class="food-card-header">
+              <span class="food-name">2. UCC Café Plaza（札幌大通 Aurora Town 店）</span>
+              <span class="badge-pill badge-blue">建議 Day 3 午茶 / Day 6 早餐</span>
+            </div>
+            <div class="food-meta">
+              📍 中央區大通西 2 丁目 オーロラタウン（Aurora Town 地下街內）<br>
+              ⏰ 每日 09:00–20:00<br>
+              💡 位於溫暖地下街內免吹冷風，適合 09:00 後悠閒享用三明治早餐或大通商圈下午茶。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=UCC+Café+Plaza+オーロラタウン" target="_blank">📍 地圖導航</a>
+            </div>
           </div>
         </div>
       </div>
 
+      <!-- 札幌迴轉壽司與海鮮 -->
+      <div class="card food-section" data-cat="sushi">
+        <div class="card-title">
+          <span class="icon-bubble">🍣</span>札幌迴轉壽司・海鮮料理（札幌站周邊）
+        </div>
+        <div class="food-list">
+          <div class="food-card">
+            <div class="food-card-header">
+              <span class="food-name">3. 壽司＆爐端燒 四季花丸 北口店</span>
+              <span class="badge-pill badge-pink">建議 Day 1 / Day 4 晚餐</span>
+            </div>
+            <div class="food-meta">
+              📍 北區北 7 條西 1 丁目 2-6 NCO 札幌 B1（飯店步行約 2 分鐘）<br>
+              ⏰ 週一至四 11:00–14:50, 17:00–21:30｜週五 11:00–14:50, 17:00–22:30｜週六 11:00–22:30｜週日 11:00–20:30<br>
+              💡 離札幌白楊飯店最近的花丸分店！除壽司外還有爐端燒烤魚與熟食定食（⚠️ 週日 20:30 提早打烊）。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=壽司＆爐端燒+四季花丸+北口店" target="_blank">📍 地圖導航</a>
+            </div>
+          </div>
+
+          <div class="food-card">
+            <div class="food-card-header">
+              <span class="food-name">4. 迴轉壽司 根室花丸 JR Tower Stellar Place 店</span>
+              <span class="badge-pill badge-yellow">建議 Day 1 離峰 / Day 3 午餐</span>
+            </div>
+            <div class="food-meta">
+              📍 中央區北 5 條西 4 丁目 JR Tower Stellar Place 6F<br>
+              ⏰ 每日 11:00–22:00（全日無午休）<br>
+              💡 Day 1 14:45 離峰或 Day 3 逛札幌站商圈最順路！先抽號碼牌再掃 QR Code 邊逛街邊看叫號進度。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=迴轉壽司+根室花丸+JR+Tower+Stellar+Place店" target="_blank">📍 地圖導航</a>
+            </div>
+          </div>
+
+          <div class="food-card">
+            <div class="food-card-header">
+              <span class="food-name">5. 迴轉壽司 根室花丸 大同生命札幌大樓 miredo 店</span>
+              <span class="badge-pill badge-blue">建議 Day 1 離峰 / Day 3 午餐</span>
+            </div>
+            <div class="food-meta">
+              📍 中央區北 3 條西 3 丁目 1 大同生命札幌大樓 B1F<br>
+              ⏰ 每日 11:00–22:00（全日無午休）<br>
+              💡 札幌站地下步行空間（Chi-Ka-Ho）連通直達免吹雪風；鮮干貝與現蒸蟹肉茶碗蒸必點。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=迴轉壽司+根室花丸+大同生命札幌大樓miredo店" target="_blank">📍 地圖導航</a>
+            </div>
+          </div>
+
+          <div class="food-card">
+            <div class="food-card-header">
+              <span class="food-name">6. Toriton Kita 8（迴轉壽司 トリトン 北8條光星店）</span>
+              <span class="badge-pill badge-mint">建議 Day 4 / Day 5 晚餐</span>
+            </div>
+            <div class="food-meta">
+              📍 東區北 8 條東 5 丁目 19-1（與飯店同在北 8 條沿線，車程約 5 分鐘）<br>
+              ⏰ 每日 11:00–22:00<br>
+              💡 在地人激推獨立路面店，家庭沙發座寬敞、熟食與玉子燒豐富，建議 16:30–17:00 先抽牌。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=Toriton+Kita+8+札幌" target="_blank">📍 地圖導航</a>
+            </div>
+          </div>
+
+          <div class="food-card">
+            <div class="food-card-header">
+              <span class="food-name">7. 札幌螃蟹本家 札幌站前本店</span>
+              <span class="badge-pill badge-pink">建議 Day 1 離峰 / Day 5 晚餐</span>
+            </div>
+            <div class="food-meta">
+              📍 中央區北 3 條西 2 丁目 1-18（東急百貨步行 2 分鐘）<br>
+              ⏰ 每日 11:30–22:00（全日無午休）<br>
+              💡 札幌站前老字號螃蟹會席名店，設有舒適和式包廂與兒童餐，非常適合 Day 1 下午長餐或最後一晚慶祝。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=札幌螃蟹本家+札幌站前本店" target="_blank">📍 地圖導航</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 札幌燒肉、釜飯與鄉土料理 -->
+      <div class="card food-section" data-cat="yakiniku">
+        <div class="card-title">
+          <span class="icon-bubble">🥩</span>札幌燒肉・釜飯・鄉土料理（飯店旁／薄野）
+        </div>
+        <div class="food-list">
+          <div class="food-card">
+            <div class="food-card-header">
+              <span class="food-name">8. めしと純米（Meshitojunmai）札幌駅北口店</span>
+              <span class="badge-pill badge-pink">建議 Day 1 / Day 4 / Day 5 晚餐</span>
+            </div>
+            <div class="food-meta">
+              📍 北區北 9 條西 4 丁目 5-2 1F（飯店隔壁步行約 1 分鐘）<br>
+              ⏰ 每日 17:00–23:00<br>
+              💡 主打現煮北海道米釜飯搭配燒肉，吃完晚餐散步 1 分鐘就能回到飯店，冬夜超省心！
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=めしと純米+札幌駅北口店" target="_blank">📍 地圖導航</a>
+            </div>
+          </div>
+
+          <div class="food-card">
+            <div class="food-card-header">
+              <span class="food-name">9. 北虎（Kitatora）札幌駅北口店</span>
+              <span class="badge-pill badge-blue">建議 Day 1 / Day 4 晚餐</span>
+            </div>
+            <div class="food-meta">
+              📍 北區北 7 條西 1 丁目 2-6 NCO 札幌 B1F（飯店步行約 2 分鐘）<br>
+              ⏰ 每日 17:00–23:30<br>
+              💡 位於札幌站北口地下連通大樓，提供北海道在地海鮮、烤物與各式鄉土料理。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=北虎+札幌駅北口店" target="_blank">📍 地圖導航</a>
+            </div>
+          </div>
+
+          <div class="food-card">
+            <div class="food-card-header">
+              <span class="food-name">10. RAZAN 燒肉餐廳 すすきの南 4 條店</span>
+              <span class="badge-pill badge-mint">建議 Day 3 狸小路晚餐</span>
+            </div>
+            <div class="food-meta">
+              📍 中央區南 4 條西 2 丁目 2-4 RECOLTE SAPPORO 1F<br>
+              ⏰ 每日 11:00–24:00<br>
+              💡 位於薄野／狸小路南側，午晚餐全天不休息，逛街後隨時都能享用燒肉。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=RAZAN焼肉レストランすすきの南4条店" target="_blank">📍 地圖導航</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 札幌人氣拉麵 -->
+      <div class="card food-section" data-cat="ramen">
+        <div class="card-title">
+          <span class="icon-bubble">🍜</span>札幌人氣拉麵（札幌站／狸小路／薄野）
+        </div>
+        <div class="food-list">
+          <div class="food-card">
+            <div class="food-card-header">
+              <span class="food-name">11. 拉麵 札幌一粒庵</span>
+              <span class="badge-pill badge-yellow">建議 Day 3 午餐（週二休）</span>
+            </div>
+            <div class="food-meta">
+              📍 中央區北 4 條西 1 丁目 1 Hokuren 大樓 B1（札幌站南側地下連通）<br>
+              ⏰ 週一 11:00–16:00｜週二公休｜週三至五及日 11:00–15:00, 17:00–21:00｜週六 11:00–21:00<br>
+              💡 招牌「元氣味噌拉麵」配炒滑蛋與北海道小麥麵條，湯頭溫潤不死鹹，孩子接受度高。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=拉麵+札幌一粒庵" target="_blank">📍 地圖導航</a>
+            </div>
+          </div>
+
+          <div class="food-card">
+            <div class="food-card-header">
+              <span class="food-name">12. 吉山商店 狸小路店</span>
+              <span class="badge-pill badge-pink">建議 Day 3 狸小路晚餐</span>
+            </div>
+            <div class="food-meta">
+              📍 中央區南 3 條西 5 丁目 33 エリオ狸小路ビル 1F<br>
+              ⏰ 每日 11:00–22:30<br>
+              💡 12/18 晚間逛狸小路 5 丁目藥妝比價時可直接順路享用招牌焙煎芝麻味噌拉麵。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=吉山商店+狸小路店" target="_blank">📍 地圖導航</a>
+            </div>
+          </div>
+
+          <div class="food-card">
+            <div class="food-card-header">
+              <span class="food-name">13. らーめん空 札幌すすきの店</span>
+              <span class="badge-pill badge-blue">建議 Day 3 晚間宵夜</span>
+            </div>
+            <div class="food-meta">
+              📍 中央區南 3 條西 5 丁目 1-1<br>
+              ⏰ 週一至六 11:00–03:00｜週日 11:00–01:00<br>
+              💡 緊鄰狸小路 5 丁目南側，營業時間長，適合晚間逛街結束後吃碗暖心味噌拉麵。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=らーめん空+札幌すすきの店" target="_blank">📍 地圖導航</a>
+            </div>
+          </div>
+
+          <div class="food-card">
+            <div class="food-card-header">
+              <span class="food-name">14. 麵屋雪風 薄野本店</span>
+              <span class="badge-pill badge-mint">建議 Day 3 晚間</span>
+            </div>
+            <div class="food-meta">
+              📍 中央區南 7 條西 4 丁目 2-6<br>
+              ⏰ 週一至四 11:00–14:00, 18:00–02:30｜週五六 11:00–14:00, 18:00–03:30｜週日 11:00–14:00, 18:00–24:00<br>
+              💡 濃厚味噌拉麵與手工煎餃名店，若晚上前往薄野看夜景可順道品嚐。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=麵屋雪風+薄野本店" target="_blank">📍 地圖導航</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: 逛街攻略 & 辦公室同事伴手禮 (結合最新行程分工) -->
+    <div id="tab-shopping" class="tab-pane" style="display: none;">
+      <!-- 採買分工策略 -->
+      <div class="alert-box purple">
+        🧳 <strong>最新行程採買分工策略（省力不提重物）：</strong><br>
+        • <strong>Day 1 傍晚（12/16）：</strong> 專攻東急百貨 <strong>Bic Camera（5–6F）＋ UNIQLO（7F）</strong>，順便補買孩子 Heattech 內層。<br>
+        • <strong>Day 3 全天（12/18）：</strong> 主攻<strong>大丸 8F 寶可夢中心＆森林家族</strong> ➔ Yodobashi / Stellar Place 扭蛋 ➔ 傍晚狸小路藥妝零食。<br>
+        • <strong>Day 4 下午（12/19）：</strong> 小樽運河＆堺町通專攻「小樽獨家限定」點心（UNGAPLUS、LeTAO 總店限定餅乾）與玻璃／音樂盒小物。<br>
+        • <strong>Day 6 機場（12/21）：</strong> 體積蓬鬆的大盒裝伴手禮（白色戀人、薯條三兄弟、札幌農學校牛奶餅乾）留到機場入關前一次掃貨裝箱！
+      </div>
+
+      <!-- Day 1 & Day 3 札幌站前與狸小路逛街攻略 -->
       <div class="card">
-        <div class="card-title"><span class="icon-bubble">✈️</span>航班資訊（含回程緩衝提醒）</div>
-        <div class="flight-box">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span class="badge b-pink">OUTBOUND · 12/16（三）</span>
-            <span style="font-size:12px; font-weight:700; color:#475569;">Thai AirAsia FD242 · 經濟艙</span>
-          </div>
-          <div class="flight-route">
-            <div>TPE 桃園 <span style="font-size:13px; color:#64748b;">07:30</span></div>
-            <div style="color:var(--primary); font-size:14px;">✈ ───→</div>
-            <div>CTS 新千歲 <span style="font-size:13px; color:#64748b;">12:00</span></div>
-          </div>
+        <div class="card-title">
+          <span class="icon-bubble">🏙️</span>Day 1 ＆ Day 3 札幌站前商圈購物重點
         </div>
-
-        <div class="flight-box">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span class="badge b-sky">RETURN · 12/21（一）</span>
-            <span style="font-size:12px; font-weight:700; color:#475569;">China Airlines CI131 · 經濟艙</span>
-          </div>
-          <div class="flight-route">
-            <div>CTS 新千歲 <span style="font-size:13px; color:#64748b;">14:40</span></div>
-            <div style="color:var(--primary); font-size:14px;">✈ ───→</div>
-            <div>TPE 桃園 <span style="font-size:13px; color:#64748b;">18:15</span></div>
-          </div>
+        <div class="alert-box info">
+          📦 <strong>分日採買動線：</strong><br>
+          • <strong>Day 1（12/16 16:45–19:00）：</strong> 東急百貨 5–6F <strong>Bic Camera</strong>（家電、藥妝、玩具）＋ 同棟 7F <strong>UNIQLO</strong>（補買孩子發熱衣），20:00 打烊前逛完去大通公園看燈飾。<br>
+          • <strong>Day 3（12/18 14:00–17:30）：</strong> <strong>大丸札幌店 8F 寶可夢中心 ＋ 玩具樓層（森林家族）</strong> ➔ <strong>Yodobashi</strong>（電器、玩具、扭蛋）➔ <strong>Stellar Place</strong>（Bandai 官方扭蛋店）。大件戰利品先拿回飯店放再去狸小路！
         </div>
-
-        <div class="alert alert-danger" style="margin-bottom:0;">
-          ⏰ <strong>回程提醒：</strong>建議 11:00–11:30 從札幌出發往新千歲機場，為候車、報到、托運與安檢預留充足緩衝。
+        <div style="font-size: 12px; color: #64748b; background: #f8fafc; padding: 12px; border-radius: 12px; line-height: 1.65;">
+          <strong>先說清楚：</strong> 地圖位置是依地址區塊標出的大致位置，圓點可能和店門口有幾十公尺落差，實際以 Google 地圖為準。營業時間依公開資料整理，冬季可能調整，出發前請確認。森林家族和扭蛋的款式與庫存以現場為準。
         </div>
       </div>
 
       <div class="card">
-        <div class="card-title"><span class="icon-bubble">🚆</span>冬季地面交通估時</div>
-        <div class="transit-grid">
-          <div class="transit-card">
-            <h4>🚆 新千歲 ➔ 札幌</h4>
-            <p>JR 快速 Airport 約 37–45 分鐘，日間約每 12 分鐘一班。</p>
-          </div>
-          <div class="transit-card">
-            <h4>♨️ 札幌 ➔ 登別</h4>
-            <p>JR 特急約 75–90 分鐘；<strong>登別站再轉道南巴士約 15 分鐘至溫泉區</strong>。</p>
-          </div>
-          <div class="transit-card">
-            <h4>🛶 札幌 ➔ 小樽 / 南小樽</h4>
-            <p>JR 約 35–50 分鐘；<strong>小樽 ⇄ 南小樽 JR 僅 3 分鐘（每 12–20 分鐘一班，210¥/100¥）</strong>。</p>
-          </div>
-          <div class="transit-card">
-            <h4>🐧 札幌 ➔ 旭山動物園</h4>
-            <p><strong>優先考慮一日遊觀光巴士團</strong>，減少冬季低溫頻繁轉乘。</p>
-          </div>
+        <div class="card-title">
+          <span class="icon-bubble">🛍️</span>Day 3 狸小路逛街地圖（12/18 傍晚—晚上｜1–7 丁目）
         </div>
-      </div>
-    </section>
-
-    <!-- ================= TAB 5: 商圈 & 玩雪攻略 ================= -->
-    <section id="tab-shopping" class="tab-pane">
-      <div class="card">
-        <div class="card-title"><span class="icon-bubble">🏙️</span>札幌站・住宿周邊（12/18 下午約 3 小時）</div>
-        <div class="alert alert-info">
-          📦 <strong>建議動線（飯店到站前約 5 分鐘）：</strong><br>
-          飯店出發 ➔ <strong>Yodobashi</strong>（電器/3C/玩具/森林家族/扭蛋）➔ <strong>Stellar Place</strong>（扭蛋）➔ <strong>東急 Bic Camera</strong>（電器/藥妝/玩具）➔ <strong>大丸百貨 8F 寶可夢中心（Pokémon Center Sapporo）</strong> ➔ 沿地下步道往南到大通站接狸小路。<br>
-          <strong>大件行李或戰利品請先放回飯店，再去狸小路！</strong>
-        </div>
-        <div style="font-size:12px; color:#64748b; background:#f8fafc; padding:11px; border-radius:12px;">
-          <strong>先說清楚：</strong>營業時間依公開資料整理，冬季可能調整，出發前請確認；森林家族、寶可夢與扭蛋款式庫存以現場為準，Bandai 官方扭蛋店等細項店鋪請在地圖搜尋確認。
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><span class="icon-bubble">🛍️</span>狸小路商店街（12/18 晚上約 3–3.5 小時｜1–7 丁目約 900 公尺）</div>
-        <div class="alert alert-warn">
-          👟 <strong>建議動線：</strong>大通站出來 ➔ 3 丁目 <strong>moyuk</strong>（Loft、Standard Products、AOAO 企鵝水族館）➔ 4 丁目 <strong>唐吉訶德</strong>（玩具/扭蛋/藥妝/零食）＋<strong>狸屋伴手禮</strong> ➔ 5 丁目 <strong>藥妝比價</strong> ➔ 2 丁目 吃湯咖哩或<strong>狸 COMICHI</strong>，順摸<strong>狸神社</strong>肚子。<br>
+        <div class="alert-box">
+          👟 <strong>建議路線：</strong> 大通站出來 ➔ 3 丁目 <strong>moyuk</strong>（Loft、Standard Products、AOAO 企鵝水族館）➔ 4 丁目 <strong>唐吉訶德</strong>（玩具、扭蛋、藥妝、零食）＋<strong>狸屋伴手禮</strong> ➔ 5 丁目 <strong>藥妝比價</strong> ➔ 2 丁目 吃<strong>湯咖哩</strong>或<strong>狸 COMICHI</strong>，順路摸<strong>狸神社</strong>的肚子。<br>
           <strong>ABC-MART 約 20:00 打烊，想買防滑鞋套先去！</strong>
         </div>
-        <div class="alert alert-danger" style="margin-bottom:0;">
-          💳 <strong>扭蛋與免稅先說清楚：</strong><br>
-          • 扭蛋專門店尚未確認店名，目前確認唐吉訶德和 Loft 有扭蛋與玩具；札幌站周邊的扭蛋可在 12/18 下午先逛。<br>
-          • <strong>免稅需出示護照正本，「藥妝／食品（消耗品）」與「衣物／電器（一般商品）」門檻各為未稅 5,000 日圓、不可合併計算</strong>，結帳前先問店員。
+        <div class="alert-box danger">
+          💳 <strong>先說清楚（免稅密封規則）：</strong><br>
+          • <strong>免稅需要護照正本，藥妝／零食（消耗品）與衣物／玻璃／電器（一般商品）門檻分開計算（各未稅 5,000 日圓以上，不可合併）</strong>，且消耗品免稅密封袋在離境前不可拆封！
         </div>
       </div>
 
+      <!-- 小樽特殊主題商店 -->
       <div class="card">
-        <div class="card-title"><span class="icon-bubble">⛄</span>玩雪備案（原站避坑完整提醒）</div>
-        <div class="alert alert-mint">
-          ❄️ <strong>市區免費玩雪：</strong>推薦 <strong>中島公園</strong>（地鐵直達、腹地平坦）與 <strong>圓山公園</strong>。<strong>雪具租借通常 1 月才開放</strong>，12 月中旬建議抵達札幌後直接買一個百元塑膠雪橇最快！可排在 12/18 購物空檔或 12/21 出發前。
+        <div class="card-title">
+          <span class="icon-bubble">🏛️</span>Day 4 小樽特殊主題商店（14:30–16:30 運河＆堺町通順逛）
         </div>
-        <div class="alert alert-danger" style="margin-bottom:0;">
-          ⚠️ <strong>郊區雪場變數：</strong><strong>札幌巨蛋（DOME Snow Zone）、札幌手稻 Snowland</strong> 可先查開放日期；12 月中旬雪況及設施營運仍可能變動，<strong>切勿把尚未確認的雪場當成保證行程</strong>。
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= TAB 6: 防寒裝備清單 (含進度條 + 自訂新增) ================= -->
-    <section id="tab-checklist" class="tab-pane">
-      <div class="card">
-        <div class="card-title"><span class="icon-bubble">📋</span>北海道冬季防寒＆隨身打勾清單</div>
-        <div class="progress-wrap">
-          <div class="progress-top">
-            <span>整備完成度</span>
-            <span id="checkProgressText">0 / 11 項 (0%)</span>
+        <div class="food-list">
+          <div class="food-card souvenir-highlight">
+            <div class="food-card-header">
+              <span class="food-name">1. UNGAPLUS（小樽百貨｜運河旁百年倉庫選品店）</span>
+              <span class="badge-pill badge-pink">運河點燈順逛</span>
+            </div>
+            <div class="food-meta">
+              📍 小樽市色內 2 丁目 1-20（舊小樽倉庫內，小樽運河正對面）<br>
+              💡 以北前船航運歷史為概念的高質感選品店，販售小樽職人獨家點心、罐頭、香草茶與復古設計雜貨，包裝文青體面、完全不撞款！
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link pink" href="https://www.google.com/maps/search/?api=1&query=UNGAPLUS+小樽" target="_blank">📍 地圖導航</a>
+            </div>
           </div>
-          <div class="progress-bar"><div class="progress-fill" id="checkProgressFill"></div></div>
-        </div>
 
-        <div id="checklistContainer"></div>
+          <div class="food-card souvenir-highlight">
+            <div class="food-card-header">
+              <span class="food-name">2. 北一硝子 三號館 ＆ 大正硝子館（百年玻璃工藝）</span>
+              <span class="badge-pill badge-blue">精緻送禮小物</span>
+            </div>
+            <div class="food-meta">
+              📍 堺町通商店街沿線<br>
+              💡 除了欣賞 167 盞煤油燈大廳，還可挑選小巧的玻璃筷架、醬油瓶、清酒杯與玻璃動物擺飾（店家皆會細心包防撞氣泡紙），適合送給重要主管或閨蜜同事。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=北一硝子三号館+小樽" target="_blank">📍 地圖導航</a>
+            </div>
+          </div>
 
-        <div class="add-item-bar">
-          <input type="text" id="customCheckInput" class="text-input" placeholder="新增自訂必帶物品（例：暖暖包、小孩備用襪）">
-          <button type="button" class="btn btn-sm" onclick="addCustomCheck()">＋ 新增</button>
+          <div class="food-card souvenir-highlight">
+            <div class="food-card-header">
+              <span class="food-name">3. 小樽音樂盒堂 本館 ＆ 小樽藝術村博物館商店</span>
+              <span class="badge-pill badge-purple">文具與音樂盒</span>
+            </div>
+            <div class="food-meta">
+              📍 童話十字路口（音樂盒堂）／運河旁舊三井銀行一帶（藝術村商店）<br>
+              💡 音樂盒堂有門口「蒸氣鐘」造型與招財貓音樂盒；藝術村商店販售彩繪玻璃主題資料夾、明信片與金屬書籤，輕巧不怕摔。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=小樽オルゴール堂+本館" target="_blank">📍 音樂盒堂</a>
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=小樽芸術村+ミュージアムショップ" target="_blank">📍 藝術村商店</a>
+            </div>
+          </div>
+
+          <div class="food-card souvenir-highlight">
+            <div class="food-card-header">
+              <span class="food-name">4. 田中酒造 龜甲藏 / 本店（小樽唯一地酒釀造廠）</span>
+              <span class="badge-pill badge-mint">提供免費試飲</span>
+            </div>
+            <div class="food-meta">
+              📍 小樽市信香町 2-2（龜甲藏）／色內 3 丁目（本店）<br>
+              💡 明治時期石造倉庫改建，現場提供清酒、梅酒與無酒精甘酒試飲，適合挑選小樽限定日本酒送給愛小酌的同事或長官。
+            </div>
+            <div class="food-actions">
+              <a class="food-map-link" href="https://www.google.com/maps/search/?api=1&query=田中酒造+亀甲蔵+小樽" target="_blank">📍 地圖導航</a>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- ================= TAB 7: 導航 & 離線匯率換算 ================= -->
-    <section id="tab-gps" class="tab-pane">
+      <!-- 辦公室同事伴手禮精選 -->
       <div class="card">
-        <div class="card-title"><span class="icon-bubble">🧭</span>我的位置・Google 地圖即時導航</div>
-        <div class="alert alert-info">
-          📍 <strong>使用說明：</strong>按「定位我的位置」抓取座標 ➔ 選目的地（含住宿、小樽特色店與全部 20 間餐廳）與交通方式 ➔ 按下方按鈕喚醒 Google 地圖 App。<br>
-          定位僅於手機端運算不回傳；需在 <strong>HTTPS 網址（如 Netlify）</strong> 開啟才可取得 GPS 授權。
+        <div class="card-title">
+          <span class="icon-bubble">🎁</span>辦公室同事伴手禮精選（常溫・獨立包裝・體面不撞款）
+        </div>
+        <div class="inline-choices">
+          <div class="inline-choice-item">
+            <strong>① 【小樽獨家・最有話題】UNGAPLUS「小樽瓦燒年輪蛋糕」＆「石炭炸麻花」</strong><br>
+            以小樽瓦片與煤炭歷史為靈感，瓦燒年輪蛋糕撒上焦糖二次烘烤成酥脆餅乾口感；石炭炸麻花裹上黑糖蜂蜜，浮世繪插畫禮盒＋獨立包裝超有故事性。
+          </div>
+          <div class="inline-choice-item">
+            <strong>② 【小樽招牌・起司控必愛】LeTAO 總店限定「四種起司蜂蜜脆餅」＆「色內通夾心餅乾」</strong><br>
+            避開需冷藏的雙層起司蛋糕，改買總店限定的「Dolcina Quattro Formaggi（四種起司蜂蜜餅乾）」或常溫獨立包裝的色內通起司／紅茶巧克力夾心餅乾。
+          </div>
+          <div class="inline-choice-item">
+            <strong>③ 【鹹食派・茶水間人氣王】北菓樓「北海道開拓米菓」＆ 珍味「起司帆立貝」</strong><br>
+            男同事多或吃膩甜食首選！北菓樓米菓有甜蝦、帆立貝、昆布、秋鮭口味；小樽站內超市（Tarche）或土產店可買 25 入獨立小包裝「起司帆立貝（チーズ帆立）」。
+          </div>
+          <div class="inline-choice-item">
+            <strong>④ 【經典安全牌・大部門分發】六花亭「蘭姆葡萄夾心餅乾」＆「札幌農學校牛奶餅乾」</strong><br>
+            六花亭堺町通分店品項最齊（另有草莓巧克力球與綜合點心包）；大部門分發推薦 12 入至 48 入大盒裝「札幌農學校北海道牛奶餅乾」，奶香濃郁實惠。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: 航班與住宿 -->
+    <div id="tab-flights" class="tab-pane" style="display: none;">
+      <div class="card">
+        <div class="card-title">
+          <span class="icon-bubble">🏨</span>住宿總覽（共 5 晚）
+        </div>
+        <div class="hotel-list">
+          <div class="hotel-item">
+            <span class="hotel-nights">第 1 晚 · 12/16（三）</span>
+            <span class="hotel-name">札幌白楊飯店（HOTEL MYSTAYS Sapporo Aspen）</span>
+            <span class="hotel-note">札幌站北口步行約 5 分鐘，緊鄰北口美食圈；已確認 14:30 可先寄放行李（15:00 入住）。</span>
+          </div>
+          <div class="hotel-item highlight">
+            <span class="hotel-nights">第 2 晚 · 12/17（四）✨ 登別名湯體驗夜</span>
+            <span class="hotel-name">登別 第一滝本館（Dai-ichi Takimotokan）</span>
+            <span class="hotel-note">💡 <strong>行李撇步：</strong>大件行李已與札幌白楊飯店確認可寄放櫃檯，全家帶一個過夜包輕裝前往登別！步行即達地獄谷。</span>
+          </div>
+          <div class="hotel-item">
+            <span class="hotel-nights">第 3–5 晚 · 12/18（五）— 12/20（日）連住 3 晚</span>
+            <span class="hotel-name">札幌白楊飯店（HOTEL MYSTAYS Sapporo Aspen）</span>
+            <span class="hotel-note">返回札幌領回行李辦理續住，作為市區採買、小樽與美唄雪樂園基地。</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span class="icon-bubble">✈️</span>已知航班資訊
+        </div>
+        <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; padding: 14px; border-radius: 16px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <span class="badge-pill badge-pink">OUTBOUND · 12/16 WED</span>
+            <span style="font-size: 12px; font-weight: 700; color: #475569;">Thai AirAsia FD242 · 經濟艙</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; font-weight: 900; font-size: 18px; color: #1e1b4b;">
+            <div>TPE 桃園機場 <span style="font-size: 13px; font-weight: 600; color: #64748b;">07:30</span></div>
+            <div style="color: #6366f1; font-size: 14px;">✈ ───→</div>
+            <div>CTS 新千歲 <span style="font-size: 13px; font-weight: 600; color: #64748b;">12:00</span></div>
+          </div>
         </div>
 
-        <button type="button" class="btn" onclick="getLocation()">📍 定位我的位置</button>
-        <div id="locationDisplay" style="font-size:12.5px; font-weight:700; color:var(--primary-dark); text-align:center; margin:10px 0 14px;">
-          尚未定位。按上方按鈕並在手機視窗允許「定位」。
+        <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; padding: 14px; border-radius: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <span class="badge-pill badge-blue">RETURN · 12/21 MON</span>
+            <span style="font-size: 12px; font-weight: 700; color: #475569;">China Airlines CI131 · 經濟艙</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; font-weight: 900; font-size: 18px; color: #1e1b4b;">
+            <div>CTS 新千歲 <span style="font-size: 13px; font-weight: 600; color: #64748b;">14:40</span></div>
+            <div style="color: #6366f1; font-size: 14px;">✈ ───→</div>
+            <div>TPE 桃園 <span style="font-size: 13px; font-weight: 600; color: #64748b;">18:15</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span class="icon-bubble">🚆</span>冬季地面交通估時（最新路線）
+        </div>
+        <div class="transit-grid">
+          <div class="transit-item">
+            <h4>🚆 新千歲 → 札幌</h4>
+            <p>JR 快速 Airport 約 37–45 分鐘，入境領行李預留 1–1.5 小時。</p>
+          </div>
+          <div class="transit-item">
+            <h4>♨️ 札幌 → 登別（時代村／第一滝本館）</h4>
+            <p>JR 特急約 75–90 分鐘；登別站轉道南巴士至時代村約 6–10 分鐘，時代村至溫泉街約 10 分鐘。</p>
+          </div>
+          <div class="transit-item">
+            <h4>🐧 札幌 → 小樽 / 小樽水族館</h4>
+            <p>JR 至小樽約 35–50 分鐘；小樽站轉北海道中央巴士（祝津方向）至水族館約 25 分鐘。</p>
+          </div>
+          <div class="transit-item">
+            <h4>⛄ 札幌 → 美唄 Alpen SNOWLAND</h4>
+            <p>JR 往美唄站（岩見澤方向），出站轉雪場接駁車（單程約 ¥300，時刻與預約方式出發前確認）。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: 玩雪備案 -->
+    <div id="tab-snow" class="tab-pane" style="display: none;">
+      <div class="card">
+        <div class="card-title">
+          <span class="icon-bubble">⛄</span>Day 5 美唄雪樂園主行程 ＆ 市區玩雪備案
+        </div>
+        <div class="alert-box info">
+          🛷 <strong>Day 5 主力玩雪行程：Alpen SNOWLAND 美唄（12/20）</strong><br>
+          • 預定 2026/12/10 開幕（營業 09:00–16:15，最後入場 15:00），入場費含雪胎、泡泡球、胖胎車、雪上足球與兒童玩雪區（雪上橡皮艇另收費）。<br>
+          • <strong>必帶備品：</strong>幫孩子多帶一雙<strong>乾的手套與厚襪子</strong>，中午休息時替換，回札幌先回飯店換掉濕衣服！
+        </div>
+        <div class="alert-box">
+          💡 <strong>市區公園免費玩雪備案（若美唄積雪未開或臨時調整）：</strong><br>
+          市區公園（<strong>中島公園、圓山公園</strong>）可免費玩雪，<strong>雪具租借通常 1 月才開始</strong>，建議到札幌後在百元店或唐吉訶德買簡易塑膠雪橇。
+        </div>
+        <div class="alert-box danger">
+          ⚠️ <strong>雪場開放變數提醒：</strong> <strong>美唄 Alpen SNOWLAND（預定 12/10 開幕）、札幌巨蛋（DOME Snow Zone）、札幌手稻 Snowland</strong> 出發前一週請再確認官網雪況與開放日期，12 月中旬雪況仍有變數。
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 6: 裝備與伴手禮打勾清單 -->
+    <div id="tab-checklist" class="tab-pane" style="display: none;">
+      <div class="card">
+        <div class="card-title">
+          <span class="icon-bubble">📋</span>北海道防寒裝備 & 購物伴手禮採買打勾表
+        </div>
+        <p style="font-size: 13px; color: #64748b; margin-bottom: 14px;">
+          打勾紀錄會自動保存在這台手機，關閉網頁重開也不會消失喔！✨
+        </p>
+
+        <div class="checklist-group">
+          <h4>🛍️ 札幌商圈＆親子必買清單（Day 1 & Day 3）</h4>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="v1-shop1"><span>[Day 1 東急 7F UNIQLO] 補買孩子 Heattech 發熱衣褲內層</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="v1-shop2"><span>[Day 1 東急 5-6F Bic Camera] 鎖定家電、藥妝與玩具</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="v1-shop3"><span>[Day 3 大丸札幌 8F] 寶可夢中心（優先）＋ 玩具樓層森林家族</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="v1-shop4"><span>[Day 3 札幌站/狸小路] Yodobashi、Stellar Place 扭蛋、唐吉訶德藥妝零食</span></label>
         </div>
 
-        <label for="destSelect" style="display:block; font-size:13px; font-weight:800; color:#1e1b4b; margin-bottom:6px;">🎯 選擇目的地：</label>
-        <select id="destSelect" class="nav-select" onchange="updateNavLink()">
-          <optgroup label="🏨 住宿與主要景點">
+        <div class="checklist-group">
+          <h4>🎁 辦公室同事伴手禮＆在地採買清單（Day 4 & Day 6）</h4>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="cute-v6-s1"><span>[小樽 UNGAPLUS] 小樽瓦燒年輪蛋糕 / 石炭炸麻花</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="cute-v6-s2"><span>[小樽 LeTAO 總店] 限定四種起司蜂蜜脆餅 / 色內通夾心餅乾</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="cute-v6-s3"><span>[小樽 北菓樓] 北海道開拓米菓（甜蝦/帆立貝/昆布/秋鮭）</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="cute-v6-s4"><span>[小樽站 Tarche/土產店] 獨立包裝「起司帆立貝」25 入盒裝</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="cute-v6-s5"><span>[小樽硝子/藝術村] 玻璃筷架、清酒杯或彩繪玻璃書籤（送主管/閨蜜）</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="cute-v6-s6"><span>[新千歲機場] 大盒裝白色戀人 / 薯條三兄弟 / 札幌農學校牛奶餅乾 / 六花亭</span></label>
+        </div>
+
+        <div class="checklist-group">
+          <h4>❄️ 隨身防寒與雪地安全（美唄玩雪必備）</h4>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="cute-v6-c1"><span>防滑冰爪鞋套 (到札幌市區或 ABC-Mart 20:00 前購買套上鞋子)</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="cute-v6-c2"><span>保暖防水高筒雪靴 (鞋底深刻紋、防潑水材質)</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="cute-v6-c3"><span>保暖毛帽 (必須能完整蓋住雙耳防風吹頭痛)</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="cute-v6-c4"><span>防水防風保暖手套＋備用乾手套／厚襪子 (Day 5 美唄玩雪中午替換用)</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="cute-v6-c5"><span>厚圍巾 / 保暖脖圍 (進出強烈暖氣室內方便快速穿脫)</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="cute-v6-c6"><span>洋蔥式發熱衣褲 (室內車廂暖氣強，切忌單穿一件超厚毛衣)</span></label>
+        </div>
+
+        <div class="checklist-group">
+          <h4>🎒 隨身護理與重要物品</h4>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="cute-v6-c7"><span>護唇膏 & 高保濕乳液 (雪國空氣極度乾燥必備)</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="cute-v6-c8"><span>隨身保溫瓶 (低溫戶外隨時喝一口溫水防乾咳)</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="cute-v6-c9"><span>行動電源 (零下低溫手機掉電極快，需貼身放在大衣內側)</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="cute-v6-c10"><span>常備感冒藥 / 退燒止痛藥 / 腸胃藥</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" data-id="cute-v6-c11"><span>全家護照正本 (隨身攜帶，辦理免稅手續必備)</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 7: 我的位置・導航 -->
+    <div id="tab-gps" class="tab-pane" style="display: none;">
+      <div class="card">
+        <div class="card-title">
+          <span class="icon-bubble">🧭</span>我的位置・導航（最新景點＋小樽商店＋20間餐廳）
+        </div>
+        <div class="alert-box info">
+          📍 <strong>怎麼用：</strong><br>
+          1. 按「定位我的位置」，頁面會取得你現在的座標。<br>
+          2. 選目的地（含住宿、伊達時代村、第一滝本館、小樽水族館、美唄雪樂園、小樽伴手禮店與 20 間精選餐廳）與交通方式，按下方「用 Google 地圖 App 導航」即可開啟路線。<br>
+          <strong>定位只在你的手機上使用，不會儲存或傳送你的位置。需要用 HTTPS 網址開啟才抓得到定位。</strong>
+        </div>
+
+        <button class="btn" onclick="getLocation()">📍 定位我的位置</button>
+        <div id="location-display" style="font-size: 13px; font-weight: 700; margin: 10px 0 14px; color: #4338ca; text-align: center;">尚未定位。按上面的按鈕，並在手機跳出的視窗允許「定位」。</div>
+
+        <label for="dest-select" style="display: block; font-size: 13px; font-weight: 800; color: #312e81; margin-bottom: 6px;">🎯 選擇目的地（住宿／最新景點／商店／餐廳）：</label>
+        <select id="dest-select" class="nav-select" aria-label="選擇目的地" onchange="updateNavLink()">
+          <optgroup label="🏨 住宿與最新行程景點">
             <option value="HOTEL MYStays Sapporo Aspen">🏨 札幌白楊飯店 (MYStays Sapporo Aspen)</option>
-            <option value="Noboribetsu Jigokudani">♨️ 登別地獄谷 / 登別溫泉街</option>
-            <option value="Sapporo Station">🚉 札幌車站 / 大丸 8F 寶可夢中心</option>
+            <option value="東急百貨店 さっぽろ店">🛍️ 東急百貨札幌店 (5-6F Bic Camera / 7F UNIQLO)</option>
+            <option value="Odori Park Sapporo">🎄 大通公園 (白色燈樹節 / 慕尼黑聖誕市集)</option>
+            <option value="Noboribetsu Date Jidaimura">🏯 登別伊達時代村</option>
+            <option value="Dai-ichi Takimotokan Noboribetsu">♨️ 登別 第一滝本館 / 登別地獄谷</option>
+            <option value="Daimaru Sapporo">⚡ 大丸札幌店 (8F 寶可夢中心 / 森林家族)</option>
             <option value="moyuk SAPPORO">🐧 狸小路 3 丁目 moyuk / AOAO 水族館</option>
-            <option value="Tanukikoji Shopping Street">🛍️ 狸小路商店街 (唐吉訶德 / 狸屋)</option>
-            <option value="Asahiyama Zoo">🐻 旭山動物園</option>
-            <option value="Nakajima Park Sapporo">⛄ 中島公園（市區免費玩雪）</option>
+            <option value="Tanukikoji Shopping Street">🛍️ 狸小路商店街 (4丁目唐吉訶德/狸屋)</option>
+            <option value="Otaru Aquarium">🐧 小樽水族館 (企鵝雪中散步)</option>
+            <option value="Alpen SNOWLAND Bibai">⛄ 美唄 Alpen SNOWLAND 雪樂園</option>
+            <option value="Shiroi Koibito Park">🏰 白色戀人公園 (玫瑰花園聖誕燈飾)</option>
             <option value="New Chitose Airport">✈️ 新千歲機場</option>
           </optgroup>
-          <optgroup label="🛶 Day 4 小樽特色店＆雙離峰 6 大美食">
-            <option value="味処たけだ 小樽三角市場">🐟 [10:30] 味處たけだ（三角市場）</option>
-            <option value="滝波食堂 小樽三角市場">🐟 [10:30] 滝波食堂（三角市場）</option>
-            <option value="若鶏時代 なると 本店 小樽">🍗 [11:00] 若鶏時代 なると 本店（炸半雞）</option>
-            <option value="南小樽車站">🚃 南小樽車站（搭 3 分鐘 JR 順下坡）</option>
-            <option value="小樽音樂盒堂 本館">🎶 小樽音樂盒堂 本館 / 童話十字路口</option>
+          <optgroup label="🎁 Day 4 小樽特殊主題商店與伴手禮">
+            <option value="UNGAPLUS 小樽">🏛️ UNGAPLUS（小樽百貨・運河旁伴手禮）</option>
+            <option value="北一硝子三号館 小樽">🔮 北一硝子 三號館（百年玻璃工藝）</option>
+            <option value="小樽オルゴール堂 本館">🎶 小樽音樂盒堂 本館 / 童話十字路口</option>
             <option value="LeTAO 總店 小樽">🍰 LeTAO 總店（四種起司蜂蜜脆餅）</option>
-            <option value="北一硝子 三号館 小樽">🔮 北一硝子三號館 / 堺町通</option>
-            <option value="小樽ポセイ丼 堺町総本店">🦀 [14:00] 小樽ポセイ丼 堺町総本店</option>
-            <option value="かま栄 工場直売店 小樽">🍢 [14:00] かま栄 工廠直營店（魚板麵包捲）</option>
-            <option value="回転寿司 函太郎 小樽店">🍣 [14:00] 迴轉壽司 函太郎 小樽店</option>
-            <option value="Otaru Canal">✨ 小樽運河（16:00 點燈夜景）</option>
-            <option value="UNGAPLUS 小樽">🎁 UNGAPLUS 小樽百貨（瓦燒年輪蛋糕）</option>
-            <option value="ドン・キホーテ 小樽店">🔌 唐吉訶德 小樽店（站前 3C 應急）</option>
+            <option value="六花亭 小樽運河店">🍪 六花亭 小樽運河店 / 北菓樓</option>
+            <option value="小樽芸術村 ミュージアムショップ">🎨 小樽藝術村 博物館商店</option>
+            <option value="田中酒造 亀甲蔵 小樽">🍶 田中酒造 龜甲藏（小樽地酒）</option>
           </optgroup>
-          <optgroup label="☀️ 札幌早餐與咖啡">
+          <optgroup label="🛶 Day 4 小樽 6 大美食與運河">
+            <option value="味処たけだ 小樽三角市場">🐟 味處たけだ（小樽三角市場）</option>
+            <option value="滝波食堂 小樽三角市場">🐟 滝波食堂（小樽三角市場）</option>
+            <option value="若鶏時代 なると 本店 小樽">🍗 若鶏時代 なると 本店（炸半雞）</option>
+            <option value="小樽ポセイ丼 堺町総本店">🦀 [14:30離峰] 小樽ポセイ丼 堺町総本店</option>
+            <option value="かま栄 工場直売店 小樽">🍢 [14:30離峰] かま栄 工廠直營店（魚板麵包捲）</option>
+            <option value="回転寿司 函太郎 小樽店">🍣 [14:30離峰] 迴轉壽司 函太郎 小樽店</option>
+            <option value="Otaru Canal">✨ 小樽運河（16:00點燈夜景）</option>
+          </optgroup>
+          <optgroup label="☀️ 札幌早餐與咖啡輕食">
             <option value="猿田彦珈琲 D-LIFEPLACE 札幌店">☕ 猿田彦珈琲 D-LIFEPLACE 札幌店</option>
-            <option value="UCC Café Plaza オーロラタウン">☕ UCC Café Plaza（大通地下街）</option>
+            <option value="UCC Café Plaza オーロラタウン">☕ UCC Café Plaza（大通 Aurora Town）</option>
           </optgroup>
           <optgroup label="🍣 札幌迴轉壽司與海鮮">
-            <option value="壽司＆爐端燒 四季花丸 北口店">🍣 四季花丸 北口店</option>
+            <option value="壽司＆爐端燒 四季花丸 北口店">🍣 壽司＆爐端燒 四季花丸 北口店</option>
             <option value="迴轉壽司 根室花丸 JR Tower Stellar Place店">🍣 根室花丸 JR Tower Stellar Place 店</option>
             <option value="迴轉壽司 根室花丸 大同生命札幌大樓miredo店">🍣 根室花丸 大同生命 miredo 店</option>
-            <option value="Toriton Kita 8 札幌">🍣 Toriton Kita 8（北 8 條光星店）</option>
+            <option value="Toriton Kita 8 札幌">🍣 Toriton Kita 8（迴轉壽司 北8條光星店）</option>
             <option value="札幌螃蟹本家 札幌站前本店">🦀 札幌螃蟹本家 札幌站前本店</option>
           </optgroup>
           <optgroup label="🥩 札幌燒肉・釜飯・鄉土料理">
-            <option value="めしと純米 札幌駅北口店">🥩 めしと純米 札幌駅北口店</option>
-            <option value="北虎 札幌駅北口店">🍲 北虎 札幌駅北口店</option>
-            <option value="RAZAN焼肉レストランすすきの南4条店">🥩 RAZAN 燒肉 すすきの南 4 條店</option>
+            <option value="めしと純米 札幌駅北口店">🥩 めしと純米（Meshitojunmai）札幌駅北口店</option>
+            <option value="北虎 札幌駅北口店">🍲 北虎（Kitatora）札幌駅北口店</option>
+            <option value="RAZAN焼肉レストランすすきの南4条店">🥩 RAZAN 燒肉餐廳 すすきの南 4 條店</option>
           </optgroup>
           <optgroup label="🍜 札幌人氣拉麵">
             <option value="拉麵 札幌一粒庵">🍜 拉麵 札幌一粒庵</option>
@@ -1186,273 +1715,114 @@
           <button type="button" class="mode-btn" onclick="setTravelMode('driving', this)">🚗 開車</button>
         </div>
 
-        <a id="googleNavBtn" class="btn btn-pink" href="https://www.google.com/maps/dir/?api=1&destination=HOTEL+MYStays+Sapporo+Aspen&travelmode=transit" rel="noopener" target="_blank">🧭 用 Google 地圖 App 導航</a>
+        <a id="google-nav-btn" class="btn btn-pink" href="https://www.google.com/maps/dir/?api=1&destination=HOTEL+MYStays+Sapporo+Aspen&travelmode=transit" rel="noopener" target="_blank">🧭 用 Google 地圖 App 導航</a>
       </div>
-
-      <!-- 離線日圓匯率計算機 -->
-      <div class="card">
-        <div class="card-title"><span class="icon-bubble">💱</span>採買小幫手：離線日圓 ⇄ 台幣＆免稅試算</div>
-        <div style="display:flex; gap:8px; margin-bottom:8px;">
-          <input type="number" id="jpyInput" class="text-input" placeholder="輸入日圓含稅金額（例：5500）" oninput="calcFX()">
-          <input type="number" id="fxRate" class="text-input" style="max-width:110px;" value="0.215" step="0.005" oninput="calcFX()" title="匯率">
-        </div>
-        <div style="font-size:11px; color:#64748b; margin-bottom:8px;">右側欄位可隨時修改當日匯率（預設 1 JPY = 0.215 TWD）。</div>
-        <div class="fx-grid">
-          <div class="fx-result">
-            <div class="lbl">含稅約台幣</div>
-            <div class="val" id="twdTaxIn">NT$ 0</div>
-          </div>
-          <div class="fx-result" style="background:var(--pink-soft); border-color:#fbcfe8;">
-            <div class="lbl">退稅 10% 後約台幣</div>
-            <div class="val" id="twdTaxFree" style="color:#db2777;">NT$ 0</div>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div>
   </main>
 
   <script>
-    // ====== 狀態管理 ======
     let currentLat = null;
     let currentLng = null;
     let currentMode = 'transit';
-    let snowOn = true;
 
-    const DEFAULT_CHECKS = [
-      { id: 'c1', text: '防滑冰爪鞋套（或抵達札幌市區／ABC-MART 即刻購買）' },
-      { id: 'c2', text: '保暖防水高筒雪靴（鞋底刻紋深、防潑水材質）' },
-      { id: 'c3', text: '遮耳保暖毛帽（完整蓋住雙耳，防寒風吹襲頭痛）' },
-      { id: 'c4', text: '防水保暖玩雪手套（一般針織手套碰雪會結冰濕透）' },
-      { id: 'c5', text: '厚圍巾 / 保暖脖圍（進出室內強暖氣方便快速穿脫）' },
-      { id: 'c6', text: '洋蔥式發熱衣褲（切忌單穿過厚毛衣無法調節溫差）' },
-      { id: 'c7', text: '護唇膏 & 高保濕乳液（雪國乾燥空氣必備）' },
-      { id: 'c8', text: '隨身保溫瓶（戶外隨時給孩子喝溫水防乾咳）' },
-      { id: 'c9', text: '大容量行動電源（低溫掉電極快，需放外套內側保溫）' },
-      { id: 'c10', text: '常備藥品（兒童退燒藥、綜合感冒藥、腸胃藥、暈車藥）' },
-      { id: 'c11', text: '全家護照正本（隨身攜帶辦理免稅手續必備）' }
-    ];
+    function switchTab(tabId, btnEl) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active'));
+      const activePane = document.getElementById(tabId);
+      if (activePane) activePane.style.display = 'block';
+      if (btnEl) btnEl.classList.add('active');
+    }
 
-    const SOUVENIRS = [
-      { id: 's1', group: 'otaru', name: 'UNGAPLUS 小樽瓦燒年輪蛋糕', sub: '運河旁百年倉庫選品店｜酥脆焦糖年輪餅乾・超有故事感' },
-      { id: 's2', group: 'otaru', name: 'UNGAPLUS 石炭炸麻花', sub: '黑糖蜂蜜酥脆點心・復古包裝完全不撞款' },
-      { id: 's3', group: 'otaru', name: 'LeTAO 總店限定「四種起司蜂蜜脆餅」', sub: '常溫鹹甜酥脆・總店限定版（另推色內通夾心餅乾）' },
-      { id: 's4', group: 'otaru', name: '北菓樓 北海道開拓米菓', sub: '甜蝦／帆立貝／昆布鹹香涮嘴・辦公室男同事人氣王' },
-      { id: 's5', group: 'otaru', name: '珍味 起司帆立貝（25 入獨立包裝）', sub: '小樽站超市或土產店可買・濃郁起司包整顆干貝' },
-      { id: 's6', group: 'otaru', name: '六花亭 蘭姆葡萄夾心餅乾／草莓巧克力', sub: '堺町通大店直購・經典高質感安全牌' },
-      { id: 's7', group: 'otaru', name: '北一／大正硝子玻璃小物或音樂盒', sub: '精緻筷架／書籤・送交情特別好的同事或主管' },
-      { id: 's8', group: 'airport', name: '札幌農學校 北海道牛奶餅乾（大盒裝）', sub: '12–48 入多種規格・大部門分發實惠又香濃' },
-      { id: 's9', group: 'airport', name: '白色戀人／薯條三兄弟', sub: '體積蓬鬆・留到 Day 6 新千歲國內線最後買齊裝箱' }
-    ];
+    function showDay(dayNum) {
+      document.querySelectorAll('.day-content').forEach(el => el.classList.remove('active'));
+      const target = document.getElementById('day-' + dayNum);
+      if (target) target.classList.add('active');
 
-    // ====== 倒數計時 ======
-    function updateCountdown() {
-      const start = new Date('2026-12-16T00:00:00+08:00');
-      const end = new Date('2026-12-21T23:59:59+08:00');
-      const now = new Date();
-      const el = document.getElementById('tripCountdown');
-      if (now < start) {
-        const days = Math.ceil((start - now) / (1000 * 60 * 60 * 24));
-        el.textContent = `❄️ 距離出發還有 ${days} 天`;
-      } else if (now <= end) {
-        const dayIdx = Math.floor((now - start) / (1000 * 60 * 60 * 24)) + 1;
-        el.textContent = `⛄ 旅途進行中 · DAY ${dayIdx}`;
+      document.querySelectorAll('.day-btn').forEach((btn, idx) => {
+        if (idx === dayNum - 1) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    function filterFood(cat, btnEl) {
+      document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      document.querySelectorAll('.food-section').forEach(sec => {
+        if (cat === 'all' || sec.getAttribute('data-cat') === cat) {
+          sec.style.display = 'block';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+    }
+
+    function loadChecklist() {
+      const saved = JSON.parse(localStorage.getItem('hokkaido_cute_checklist_v6') || '{}');
+      document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(box => {
+        const id = box.getAttribute('data-id');
+        if (saved[id]) {
+          box.checked = true;
+          box.parentElement.classList.add('done');
+        }
+      });
+    }
+
+    function toggleCheck(box) {
+      const id = box.getAttribute('data-id');
+      const saved = JSON.parse(localStorage.getItem('hokkaido_cute_checklist_v6') || '{}');
+      saved[id] = box.checked;
+      localStorage.setItem('hokkaido_cute_checklist_v6', JSON.stringify(saved));
+      if (box.checked) {
+        box.parentElement.classList.add('done');
       } else {
-        el.textContent = `❄️ 2026 北海道美好回憶`;
+        box.parentElement.classList.remove('done');
       }
     }
 
-    // ====== 飄雪開關 ======
-    function toggleSnow() {
-      snowOn = !snowOn;
-      document.getElementById('snowLayer').classList.toggle('paused', !snowOn);
-      document.getElementById('snowToggleBtn').textContent = snowOn ? '❄️ 飄雪：開' : '❄️ 飄雪：關';
-    }
-
-    // ====== 分頁與日期切換 ======
-    function switchTab(tabId, btnEl) {
-      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active'));
-      const pane = document.getElementById(tabId);
-      if (pane) pane.classList.add('active');
-      if (btnEl) btnEl.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function showDay(num, btnEl) {
-      document.querySelectorAll('.day-content').forEach(d => d.classList.remove('active'));
-      document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
-      const target = document.getElementById('day-' + num);
-      if (target) target.classList.add('active');
-      if (btnEl) btnEl.classList.add('active');
-    }
-
-    // ====== 美食篩選 ======
-    function filterFood(cat, btnEl) {
-      document.querySelectorAll('#foodFilters .filter-chip').forEach(c => c.classList.remove('active'));
-      if (btnEl) btnEl.classList.add('active');
-      document.querySelectorAll('#foodListContainer .item-card').forEach(card => {
-        card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'flex' : 'none';
-      });
-    }
-
-    // ====== 伴手禮追蹤器 (LocalStorage) ======
-    function getSouvenirState() {
-      return JSON.parse(localStorage.getItem('hokkaido_souvenir_v6') || '{}');
-    }
-    function saveSouvenirState(st) {
-      localStorage.setItem('hokkaido_souvenir_v6', JSON.stringify(st));
-    }
-    function renderSouvenirs() {
-      const state = getSouvenirState();
-      const otaruWrap = document.getElementById('souvenirOtaruList');
-      const airportWrap = document.getElementById('souvenirAirportList');
-      otaruWrap.innerHTML = '';
-      airportWrap.innerHTML = '';
-      let totalQty = 0;
-
-      SOUVENIRS.forEach(item => {
-        const entry = state[item.id] || { checked: false, qty: 0 };
-        totalQty += entry.qty;
-        const row = document.createElement('div');
-        row.className = 'souvenir-row' + (entry.checked ? ' checked' : '');
-        row.innerHTML = `
-          <label class="souvenir-left">
-            <input type="checkbox" class="cute-cb" ${entry.checked ? 'checked' : ''} onchange="toggleSouvenir('${item.id}', this.checked)">
-            <div>
-              <div class="souvenir-title">${item.name}</div>
-              <div class="souvenir-sub">${item.sub}</div>
-            </div>
-          </label>
-          <div class="qty-ctrl">
-            <button type="button" class="qty-btn" onclick="changeSouvenirQty('${item.id}', -1)">−</button>
-            <span class="qty-num">${entry.qty}</span>
-            <button type="button" class="qty-btn" onclick="changeSouvenirQty('${item.id}', 1)">＋</button>
-          </div>
-        `;
-        if (item.group === 'otaru') otaruWrap.appendChild(row);
-        else airportWrap.appendChild(row);
-      });
-      document.getElementById('souvenirTotalSummary').textContent = `📦 目前預計／已購總計：${totalQty} 盒／件`;
-    }
-    function toggleSouvenir(id, checked) {
-      const st = getSouvenirState();
-      const cur = st[id] || { checked: false, qty: 0 };
-      cur.checked = checked;
-      if (checked && cur.qty === 0) cur.qty = 1;
-      st[id] = cur;
-      saveSouvenirState(st);
-      renderSouvenirs();
-    }
-    function changeSouvenirQty(id, delta) {
-      const st = getSouvenirState();
-      const cur = st[id] || { checked: false, qty: 0 };
-      cur.qty = Math.max(0, cur.qty + delta);
-      if (cur.qty > 0) cur.checked = true;
-      st[id] = cur;
-      saveSouvenirState(st);
-      renderSouvenirs();
-    }
-
-    // ====== 防寒裝備清單 (含自訂新增 & 進度條) ======
-    function getCheckState() {
-      return JSON.parse(localStorage.getItem('hokkaido_check_v6') || '{"checked":{},"custom":[]}');
-    }
-    function saveCheckState(st) {
-      localStorage.setItem('hokkaido_check_v6', JSON.stringify(st));
-    }
-    function renderChecklist() {
-      const st = getCheckState();
-      const allItems = [...DEFAULT_CHECKS, ...(st.custom || [])];
-      const wrap = document.getElementById('checklistContainer');
-      wrap.innerHTML = '';
-      let doneCount = 0;
-
-      allItems.forEach(item => {
-        const isDone = !!st.checked[item.id];
-        if (isDone) doneCount++;
-        const lbl = document.createElement('label');
-        lbl.className = 'check-row' + (isDone ? ' done' : '');
-        lbl.innerHTML = `
-          <input type="checkbox" class="cute-cb" ${isDone ? 'checked' : ''} onchange="toggleCheckItem('${item.id}', this.checked)">
-          <span style="font-size:13px; flex:1;">${item.text}</span>
-        `;
-        wrap.appendChild(lbl);
-      });
-
-      const pct = allItems.length ? Math.round((doneCount / allItems.length) * 100) : 0;
-      document.getElementById('checkProgressText').textContent = `${doneCount} / ${allItems.length} 項 (${pct}%)`;
-      document.getElementById('checkProgressFill').style.width = pct + '%';
-    }
-    function toggleCheckItem(id, val) {
-      const st = getCheckState();
-      st.checked[id] = val;
-      saveCheckState(st);
-      renderChecklist();
-    }
-    function addCustomCheck() {
-      const inp = document.getElementById('customCheckInput');
-      const txt = inp.value.trim();
-      if (!txt) return;
-      const st = getCheckState();
-      st.custom = st.custom || [];
-      st.custom.push({ id: 'custom_' + Date.now(), text: txt });
-      saveCheckState(st);
-      inp.value = '';
-      renderChecklist();
-    }
-
-    // ====== GPS 與 Google Maps 導航 ======
     function setTravelMode(mode, btnEl) {
       currentMode = mode;
       document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
       if (btnEl) btnEl.classList.add('active');
       updateNavLink();
     }
+
     function updateNavLink() {
-      const dest = document.getElementById('destSelect').value;
-      const btn = document.getElementById('googleNavBtn');
+      const dest = document.getElementById('dest-select').value;
+      const navBtn = document.getElementById('google-nav-btn');
       let url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(dest)}&travelmode=${currentMode}`;
       if (currentLat !== null && currentLng !== null) {
         url += `&origin=${currentLat},${currentLng}`;
       }
-      btn.href = url;
+      navBtn.href = url;
     }
+
     function getLocation() {
-      const disp = document.getElementById('locationDisplay');
+      const display = document.getElementById('location-display');
       if (!navigator.geolocation) {
-        disp.textContent = '此瀏覽器不支援 GPS 定位功能。';
+        display.innerHTML = '您的瀏覽器不支援 GPS 定位功能。';
         return;
       }
-      disp.textContent = '🐾 正在取得目前位置...';
+      display.innerHTML = '🐾 正在取得 GPS 座標...';
       navigator.geolocation.getCurrentPosition(
         pos => {
           currentLat = pos.coords.latitude.toFixed(5);
           currentLng = pos.coords.longitude.toFixed(5);
-          disp.textContent = `✅ 已定位：${currentLat}, ${currentLng}（導航將從這裡出發）`;
+          display.innerHTML = `✅ 已定位：緯度 ${currentLat}, 經度 ${currentLng}（導航將自動從此處出發）`;
           updateNavLink();
         },
-        () => {
-          disp.textContent = '無法取得定位（需在 HTTPS 網址開啟並允許權限，您仍可直接按下方導航）。';
+        err => {
+          display.innerHTML = '無法取得定位資訊（需在 HTTPS 環境下開啟並允許定位權限，仍可直接點下方導航）。';
         },
         { enableHighAccuracy: true, timeout: 10000 }
       );
     }
 
-    // ====== 離線匯率試算 ======
-    function calcFX() {
-      const jpy = parseFloat(document.getElementById('jpyInput').value) || 0;
-      const rate = parseFloat(document.getElementById('fxRate').value) || 0.215;
-      const taxIn = Math.round(jpy * rate);
-      const taxFree = Math.round((jpy / 1.1) * rate);
-      document.getElementById('twdTaxIn').textContent = `NT$ ${taxIn.toLocaleString()}`;
-      document.getElementById('twdTaxFree').textContent = `NT$ ${taxFree.toLocaleString()}`;
-    }
-
-    // ====== 初始化 ======
     window.addEventListener('DOMContentLoaded', () => {
-      updateCountdown();
-      renderSouvenirs();
-      renderChecklist();
+      loadChecklist();
+      showDay(1);
       updateNavLink();
     });
   </script>
