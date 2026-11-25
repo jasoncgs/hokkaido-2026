@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>❄️ 北海道冬日親子冒險 · 隨行手冊 V1 (最新行程整合＋20間精選美食典藏版) ⛄</title>
+  <title>❄️ 北海道冬日親子冒險 · 隨行手冊 V2 (最新行程整合＋20間精選美食典藏版) ⛄</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap');
 
@@ -141,7 +141,7 @@
       border: 1px solid rgba(255,255,255,0.32);
     }
 
-    /* 黏性果凍分頁列 */
+    /* 黏性果凍分頁列 (支援滑動與桌機可見卷軸) */
     nav.nav-tabs {
       display: flex;
       background: rgba(255, 255, 255, 0.94);
@@ -151,15 +151,19 @@
       z-index: 99;
       box-shadow: 0 4px 18px rgba(148, 163, 184, 0.14);
       border-bottom: 1px solid #e2e8f0;
-      padding: 7px 8px;
+      padding: 8px 10px;
       gap: 6px;
       overflow-x: auto;
-      scrollbar-width: none;
+      scrollbar-width: thin;
+      scrollbar-color: #c7d2fe #f8fafc;
     }
-    nav.nav-tabs::-webkit-scrollbar { display: none; }
+    nav.nav-tabs::-webkit-scrollbar { height: 5px; }
+    nav.nav-tabs::-webkit-scrollbar-track { background: #f8fafc; border-radius: 999px; }
+    nav.nav-tabs::-webkit-scrollbar-thumb { background: #c7d2fe; border-radius: 999px; }
+    nav.nav-tabs::-webkit-scrollbar-thumb:hover { background: #818cf8; }
     .nav-tab-btn {
       flex: 1;
-      min-width: 76px;
+      min-width: 78px;
       padding: 8px 11px;
       text-align: center;
       background: #f8fafc;
@@ -263,15 +267,62 @@
       color: #5b21b6;
     }
 
-    /* 日程膠囊切換 */
+    /* 日程膠囊切換：顯示明確卷軸 + 左右捲動按鈕 + 支援滑鼠滾輪橫向滑動 */
+    .day-nav-container {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .scroll-arrow-btn {
+      flex: 0 0 auto;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1.5px solid #c7d2fe;
+      background: #eef2ff;
+      color: #4f46e5;
+      font-weight: 900;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      box-shadow: 0 2px 6px rgba(99, 102, 241, 0.12);
+    }
+    .scroll-arrow-btn:hover {
+      background: #4f46e5;
+      color: #fff;
+    }
+    .scroll-arrow-btn:active {
+      transform: scale(0.92);
+    }
     .day-selector-wrap {
+      flex: 1;
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding: 4px 2px 6px;
-      scrollbar-width: none;
+      padding: 4px 2px 10px;
+      scroll-behavior: smooth;
+      scrollbar-width: auto;
+      scrollbar-color: #818cf8 #e0e7ff;
     }
-    .day-selector-wrap::-webkit-scrollbar { display: none; }
+    .day-selector-wrap::-webkit-scrollbar {
+      height: 8px;
+      display: block;
+    }
+    .day-selector-wrap::-webkit-scrollbar-track {
+      background: #eef2ff;
+      border-radius: 9999px;
+    }
+    .day-selector-wrap::-webkit-scrollbar-thumb {
+      background: linear-gradient(90deg, #818cf8, #c084fc);
+      border-radius: 9999px;
+      border: 1px solid #eef2ff;
+    }
+    .day-selector-wrap::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(90deg, #4f46e5, #9333ea);
+    }
     .day-btn {
       flex: 0 0 auto;
       padding: 8px 14px;
@@ -351,16 +402,19 @@
     }
     .route-arrow { color: #ec4899; font-weight: 900; }
 
-    /* 美食篩選列 */
+    /* 美食篩選列 (同樣加上明確卷軸方便桌機操作) */
     .filter-bar {
       display: flex;
       gap: 6px;
       overflow-x: auto;
-      padding-bottom: 8px;
+      padding-bottom: 10px;
       margin-bottom: 12px;
-      scrollbar-width: none;
+      scrollbar-width: auto;
+      scrollbar-color: #818cf8 #e0e7ff;
     }
-    .filter-bar::-webkit-scrollbar { display: none; }
+    .filter-bar::-webkit-scrollbar { height: 7px; display: block; }
+    .filter-bar::-webkit-scrollbar-track { background: #eef2ff; border-radius: 9999px; }
+    .filter-bar::-webkit-scrollbar-thumb { background: #818cf8; border-radius: 9999px; }
     .filter-pill {
       flex: 0 0 auto;
       padding: 6px 13px;
@@ -622,7 +676,7 @@
     .badge-yellow { background: #fefce8; color: #b45309; border: 1px solid #fde68a; }
     .badge-purple { background: #f5f3ff; color: #6d28d9; border: 1px solid #ddd6fe; }
   </style>
-<script type="text/javascript" nonce="01c2afda60f848178e890d4ae34" src="//local.adguard.org?ts=1795535483841&amp;type=content-script&amp;dmn=contribution.usercontent.google.com&amp;url=https%3A%2F%2Fcontribution.usercontent.google.com%2Fdownload%3Fc%3DCgxiYXJkX3N0b3JhZ2USUBINcmVzcG9uc2VfZGF0YRo_CjBkNDU3ODhkYzdiNTEyOWM4MDAwNjYxMDgwOWY3YWQ3NjA4ZWI2YWJjZDMyZTkyODcSCxIHEMC3grzAEBgB%26filename%3D%25E5%258C%2597%25E6%25B5%25B7%25E9%2581%2593%25E5%2586%25AC%25E6%2597%25A5%25E8%25A6%25AA%25E5%25AD%2590%25E6%2597%2585%25E8%25A1%258C_%25E5%25AE%258C%25E6%2595%25B4%25E5%2585%25B8%25E8%2597%258F%25E7%2589%2588_V1.html%26opi%3D103135050&amp;app=chrome.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="01c2afda60f848178e890d4ae34" src="//local.adguard.org?ts=1795535483841&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;type=user-script"></script></head>
+<script type="text/javascript" nonce="16d1420ecc2d4dfba4817100c90" src="//local.adguard.org?ts=1795579290984&amp;type=content-script&amp;dmn=contribution.usercontent.google.com&amp;url=https%3A%2F%2Fcontribution.usercontent.google.com%2Fdownload%3Fc%3DCgxiYXJkX3N0b3JhZ2USUBINcmVzcG9uc2VfZGF0YRo_CjA4NDQ2NmJlMTIzYjRmOTA5MDAwNjYxMGYyYjM1ZDFmNjA4ZWI3NGI3MDQwMjlkMjMSCxIHEMC3grzAEBgB%26filename%3D%25E5%258C%2597%25E6%25B5%25B7%25E9%2581%2593%25E5%2586%25AC%25E6%2597%25A5%25E8%25A6%25AA%25E5%25AD%2590%25E6%2597%2585%25E8%25A1%258C_%25E5%25AE%258C%25E6%2595%25B4%25E5%2585%25B8%25E8%2597%258F%25E7%2589%2588_V2.html%26opi%3D103135050&amp;app=chrome.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script><script type="text/javascript" nonce="16d1420ecc2d4dfba4817100c90" src="//local.adguard.org?ts=1795579290984&amp;name=AdGuard%20Extra&amp;type=user-script"></script></head>
 <body>
 
   <div class="snow-container">
@@ -638,7 +692,7 @@
       <span>🐧</span><span>⛄</span><span>🎁</span>
     </div>
     <br>
-    <div class="badge">HOKKAIDO WINTER TRIP · 2026 · V1</div>
+    <div class="badge">HOKKAIDO WINTER TRIP · 2026 · V2</div>
     <h1>北海道冬日親子冒險</h1>
     <p>最新行程（伊達時代村・第一滝本館・小樽水族館・美唄雪樂園）＋20 間精選美食典藏手冊 ❄️</p>
     <div class="meta-pills">
@@ -661,14 +715,18 @@
   <main>
     <!-- TAB 1: 每日行程 (依老婆最新PDF行程 + 整合精選美食推薦) -->
     <div id="tab-itinerary" class="tab-pane active">
-      <div class="card" style="padding: 12px 14px; margin-bottom: 14px;">
-        <div class="day-selector-wrap">
-          <button class="day-btn active" onclick="showDay(1)">12/16 三・抵達 ✈️</button>
-          <button class="day-btn" onclick="showDay(2)">12/17 四・登別 ♨️</button>
-          <button class="day-btn" onclick="showDay(3)">12/18 五・札幌 🛍️</button>
-          <button class="day-btn" onclick="showDay(4)">12/19 六・小樽 🐧</button>
-          <button class="day-btn" onclick="showDay(5)">12/20 日・美唄 ⛄</button>
-          <button class="day-btn" onclick="showDay(6)">12/21 一・回家 🛫</button>
+      <div class="card" style="padding: 12px 12px 10px; margin-bottom: 14px;">
+        <div class="day-nav-container">
+          <button type="button" class="scroll-arrow-btn" aria-label="向左捲動日期" onclick="scrollDayBar(-180)">◀</button>
+          <div class="day-selector-wrap" id="daySelectorWrap">
+            <button class="day-btn active" onclick="showDay(1)">12/16 三・抵達 ✈️</button>
+            <button class="day-btn" onclick="showDay(2)">12/17 四・登別 ♨️</button>
+            <button class="day-btn" onclick="showDay(3)">12/18 五・札幌 🛍️</button>
+            <button class="day-btn" onclick="showDay(4)">12/19 六・小樽 🐧</button>
+            <button class="day-btn" onclick="showDay(5)">12/20 日・美唄 ⛄</button>
+            <button class="day-btn" onclick="showDay(6)">12/21 一・回家 🛫</button>
+          </div>
+          <button type="button" class="scroll-arrow-btn" aria-label="向右捲動日期" onclick="scrollDayBar(180)">▶</button>
         </div>
       </div>
 
@@ -1733,6 +1791,13 @@
       if (btnEl) btnEl.classList.add('active');
     }
 
+    function scrollDayBar(offset) {
+      const wrap = document.getElementById('daySelectorWrap');
+      if (wrap) {
+        wrap.scrollBy({ left: offset, behavior: 'smooth' });
+      }
+    }
+
     function showDay(dayNum) {
       document.querySelectorAll('.day-content').forEach(el => el.classList.remove('active'));
       const target = document.getElementById('day-' + dayNum);
@@ -1741,6 +1806,7 @@
       document.querySelectorAll('.day-btn').forEach((btn, idx) => {
         if (idx === dayNum - 1) {
           btn.classList.add('active');
+          btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         } else {
           btn.classList.remove('active');
         }
@@ -1824,6 +1890,17 @@
       loadChecklist();
       showDay(1);
       updateNavLink();
+
+      // 支援桌機滑鼠滾輪直接橫向滑動日期列
+      const dayWrap = document.getElementById('daySelectorWrap');
+      if (dayWrap) {
+        dayWrap.addEventListener('wheel', (e) => {
+          if (e.deltaY !== 0) {
+            e.preventDefault();
+            dayWrap.scrollLeft += e.deltaY;
+          }
+        }, { passive: false });
+      }
     });
   </script>
 </body>
